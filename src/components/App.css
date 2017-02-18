@@ -1,0 +1,277 @@
+.App {
+  font: Arial, Verdana, sans-serif;
+  background-color: rgb(7, 6, 4);
+  color: rgb(239, 201, 160);
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+  text-align: center;
+}
+
+.character-search {
+  text-align: left;
+  display: flex;
+  justify-content: center;
+  flex-basis: 300px;
+  margin: auto;
+  padding: 20px;
+}
+.character-search-realm {
+  flex-basis: 200px;
+}
+.character-search-char {
+  margin-left: 20px;
+  flex-basis: 200px;
+}
+.character-search-buttonbar {
+  margin-left: 20px;
+}
+
+.character-search-char input {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0 10px 0 10px;
+  height: 34px;
+  font-size: 16px;
+}
+.character-search-buttonbar button {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0 10px 0 10px;
+  height: 34px;
+  font-size: 16px;  
+}
+
+.rep-grid-container {
+  display: flex;
+  justify-content: center;
+}
+
+/* rep grid */
+.rep-grid {
+  background: linear-gradient(to right, #1a0f08, #2d160d, #1a0f08);
+  color: #c09a67;
+  font-size: 12px;
+  line-height: 22px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  flex-basis: 400px;
+}
+
+.rep-grid-header-row {
+  color: #7e3406;
+  font-size: 26px;
+}
+
+.rep-grid-row {
+  display: flex;
+  flex-direction: row;
+  padding: 4px 0;
+  border-bottom: 1px solid rgb(53, 28, 14);
+}
+.rep-grid-column {
+}
+
+.rep-grid-column-faction {
+  flex-basis: 240px;
+  min-width: 240px;
+}
+.rep-grid-column-rep {
+  flex-basis: 300px;
+  flex-grow: 1;
+  position: relative;
+  max-width: 500px;
+  min-width: 300px;
+}
+
+.rep-grid-column-rep .rep-grid-header-column-rep {
+  border-right: 1px solid rgb(84, 43, 25);
+  margin-right: 20px;
+}
+
+.rep-grid-header-row {
+  padding-bottom: 20px;
+}
+.rep-grid-header-row .rep-grid-column-rep {
+  color: #fff;
+}
+.rep-grid-header-close {
+  position: absolute;
+  top: 0px;
+  right: 35px;
+  font-size: 20px;
+  color: #7e3406;
+  opacity: .5;
+  cursor: pointer;
+}
+.rep-grid-header-close:hover {
+  opacity: 1;
+}
+
+.rep-grid-header-column-rep-details {
+  margin-top: 4px;
+}
+.rep-grid-column-rep-realm,
+.rep-grid-column-rep-class {
+  font-size: 11px;
+  line-height: 15px;
+  text-transform: uppercase;
+}
+.rep-grid-column-rep-realm {
+  color: #5b616a;
+}
+
+.rep-grid-faction-category-1 {
+  color: #fff9b2;
+  font-size: 22px;
+}
+.rep-grid-faction-category-2 {
+  color: #9c3802;
+  font-size: 18px;
+}
+.rep-grid-faction-category-2 .rep-grid-column-faction-label {
+  margin-left: 10px;
+}
+.rep-grid-faction .rep-grid-column-faction-label {
+  margin-left: 20px;
+}
+
+.rep-grid-rep-container {
+  display: flex;
+}
+
+  /* rep bars */
+.rep-grid-rep-bar {
+  background-color: rgb(84, 43, 25);
+  background: linear-gradient(to right, rgb(53, 28, 14), rgb(84, 43, 25), rgb(53, 28, 14));
+  position: relative;
+  flex-basis: 120px;
+  flex-grow: 1;
+}
+.rep-grid-rep-bar,
+.rep-grid-rep-bar-fill {
+  height: 22px;
+  border-radius: 3px;
+}
+
+.rep-grid-rep-bar-score {
+  color: #fff;
+  text-align: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 2;
+}
+
+.rep-grid-rep-bar-score,
+.rep-grid-rep-standing {
+  font-weight: bold;
+}
+.rep-grid-rep-standing {
+  flex-basis: 90px;
+  padding-left: 10px;
+}
+
+.rep-grid-column-rep-standing-Hated,
+.rep-grid-column-rep-standing-Hostile,
+.rep-grid-column-rep-standing-Unfriendly {
+  color: #a00000;
+}
+.rep-grid-column-rep-standing-Hated .rep-grid-rep-bar-fill,
+.rep-grid-column-rep-standing-Hostile .rep-grid-rep-bar-fill,
+.rep-grid-column-rep-standing-Unfriendly .rep-grid-rep-bar-fill {
+  background-color: #a00000;
+  background: linear-gradient(#800000, #a00000, #800000);
+}
+.rep-grid-column-rep-standing-Neutral {
+  color: #d2ac00;
+}
+.rep-grid-column-rep-standing-Neutral .rep-grid-rep-bar-fill {
+  background-color: #d2ac00;
+  background: linear-gradient(#c28c00, #d2ac00, #c28c00);
+}
+.rep-grid-column-rep-standing-Friendly,
+.rep-grid-column-rep-standing-Honored,
+.rep-grid-column-rep-standing-Revered {
+  color: #51ab01;
+}
+.rep-grid-column-rep-standing-Friendly .rep-grid-rep-bar-fill,
+.rep-grid-column-rep-standing-Honored .rep-grid-rep-bar-fill,
+.rep-grid-column-rep-standing-Revered .rep-grid-rep-bar-fill {
+  background-color: #51ab01;
+  background: linear-gradient(#418b01, #51ab01, #418b01);
+}
+.rep-grid-column-rep-standing-Exalted {
+  color: #00be70;
+}
+.rep-grid-column-rep-standing-Exalted .rep-grid-rep-bar-fill {
+  background-color: #00be70;
+  background: linear-gradient(#00ae60, #00be70, #00ae60);
+}
+
+/* end rep grid */
+
+/* classes */
+
+/* Warrior */
+.class-1 {
+  color: #c69b6d;
+}
+/* Paladin */
+.class-2 {
+  color: #f48cba;
+}
+/* Hunter */
+.class-3 {
+  color: #aad372;
+}
+/* Rogue */
+.class-4 {
+  color: #fff468;
+}
+/* Priest */
+.class-5 {
+  color: #f0ebe0;
+}
+/* Death Knight */
+.class-6 {
+  color: #c41e3b;
+}
+/* Shaman */
+.class-7 {
+  color: #2359ff;
+}
+/* Mage */
+.class-8 {
+  color: #68ccef;
+}
+/* Warlock */
+.class-9 {
+  color: #00ffba;
+}
+/* Monk */
+.class-10 {
+  color: #00ffba;
+}
+/* Druid */
+.class-11 {
+  color: #ff7c0a;
+}
+/* Demon Hunter */
+.class-12 {
+  color: #a330c9;
+}
+
+/* end classes */
