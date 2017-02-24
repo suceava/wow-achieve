@@ -68,11 +68,23 @@ const WOW_FACTIONS = [
       },
       {
         name: 'Council of Exarchs',
-        id: 1731
+        id: 1731,
+        side: 'alliance'
+      },
+      {
+        name: 'Frostwolf Orcs',
+        id: 1445,
+        side: 'horde'
       },
       {
         name: 'Hand of the Prophet',
-        id: 1847
+        id: 1847,
+        side: 'alliance'
+      },
+      {
+        name: 'Laughing Skull Orcs',
+        id: 1708,
+        side: 'horde'
       },
       {
         name: 'Order of the Awakened',
@@ -80,7 +92,8 @@ const WOW_FACTIONS = [
       },
       {
         name: 'Sha\'tari Defense',
-        id: 1710
+        id: 1710,
+        side: 'alliance'
       },
       {
         name: 'Shadowmoon Exiles',
@@ -95,8 +108,19 @@ const WOW_FACTIONS = [
         id: 1850
       },
       {
+        name: 'Vol\'jin\'s Headhunters',
+        id: 1848,
+        side: 'horde'
+      },
+      {
+        name: 'Vol\'jin\'s Spear',
+        id: 1681,
+        side: 'horde'
+      },
+      {
         name: 'Wrynn\'s Vanguard',
-        id: 1682
+        id: 1682,
+        side: 'alliance'
       }
     ]
   },
@@ -106,16 +130,23 @@ const WOW_FACTIONS = [
     name: 'Mists of Pandaria',
     factions: [
       {
+        name: 'Dominance Offensive',
+        id: 1375,
+        side: 'horde'
+      },
+      {
         name: 'Golden Lotus',
         id: 1269
       },
       {
         name: 'Kirin Tor Offensive',
-        id: 1387
+        id: 1387,
+        side: 'alliance'
       },
       {
         name: 'Operation: Shieldwall',
-        id: 1376
+        id: 1376,
+        side: 'alliance'
       },
       {
         name: 'Order of the Cloud Serpent',
@@ -132,6 +163,11 @@ const WOW_FACTIONS = [
       {
         name: 'Shang Xi\'s Accademy',
         id: 1216
+      },
+      {
+        name: 'Sunreaver Onslaught',
+        id: 1388,
+        side: 'horde'
       },
       {
         name: 'The August Celestials',
@@ -151,6 +187,7 @@ const WOW_FACTIONS = [
       },
       {
         name: 'The Anglers',
+        id: 1302,
         factions: [
           {
             name: 'Nat Pagle',
@@ -160,6 +197,7 @@ const WOW_FACTIONS = [
       },
       {
         name: 'The Tillers',
+        id: 1272,
         factions: [
           {
             name: 'Chee Chee',
@@ -216,11 +254,22 @@ const WOW_FACTIONS = [
       },
       {
         name: 'Baradin\'s Wardens',
-        id: 1177
+        id: 1177,
+        side: 'alliance'
+      },
+      {
+        name: 'Dragonmaw Clan',
+        id: 1172,
+        side: 'horde'
       },
       {
         name: 'Guardians of Hyjal',
         id: 1158
+      },
+      {
+        name: 'Hellscream\'s Reach',
+        id: 1178,
+        side: 'horde'
       },
       {
         name: 'Ramkahen',
@@ -236,7 +285,8 @@ const WOW_FACTIONS = [
       },
       {
         name: 'Wildhammer Clan',
-        id: 1174
+        id: 1174,
+        side: 'alliance'
       }
     ]
   },
@@ -275,22 +325,55 @@ const WOW_FACTIONS = [
       },
       {
         name: 'Alliance Vanguard',
+        id: 1037,
+        side: 'alliance',
         factions: [
           {
             name: 'Explorer\' League',
-            id: 1068
+            id: 1068,
+            side: 'alliance'
           },
           {
             name: 'The Frostborn',
-            id: 1126
+            id: 1126,
+            side: 'alliance'
           },
           {
             name: 'The Silver Covenant',
-            id: 1094
+            id: 1094,
+            side: 'alliance'
           },
           {
             name: 'Valiance Expedition',
-            id: 1050
+            id: 1050,
+            side: 'alliance'
+          }
+        ]
+      },
+      {
+        name: 'Horde Expedition',
+        id: 1052,
+        side: 'horde',
+        factions: [
+          {
+            name: 'The Hand of Vengeance',
+            id: 1067,
+            side: 'horde'
+          },
+          {
+            name: 'The Sunreavers',
+            id: 1124,
+            side: 'horde'
+          },
+          {
+            name: 'The Taunka',
+            id: 1064,
+            side: 'horde'
+          },
+          {
+            name: 'Warsong Offensive',
+            id: 1085,
+            side: 'horde'
           }
         ]
       },
@@ -324,7 +407,8 @@ const WOW_FACTIONS = [
       },
       {
         name: 'Honor Hold',
-        id: 946
+        id: 946,
+        side: 'alliance'
       },
       {
         name: 'Keepers of Time',
@@ -332,7 +416,8 @@ const WOW_FACTIONS = [
       },
       {
         name: 'Kurenai',
-        id: 978
+        id: 978,
+        side: 'alliance'
       },
       {
         name: 'Netherwing',
@@ -351,12 +436,27 @@ const WOW_FACTIONS = [
         id: 933
       },
       {
+        name: 'The Mag\'har',
+        id: 941,
+        side: 'horde'
+      },
+      {
         name: 'The Scale of the Sands',
         id: 990
       },
       {
         name: 'The Violet Eye',
         id: 967
+      },
+      {
+        name: 'Thrallmar',
+        id: 947,
+        side: 'horde'
+      },
+      {
+        name: 'Tranquillien',
+        id: 922,
+        side: 'horde'
       },
       {
         name: 'Shattrath City',
@@ -456,56 +556,136 @@ const WOW_FACTIONS = [
       },
       {
         name: 'Alliance',
+        side: 'alliance',
         factions: [
           {
             name: 'Darnassus',
-            id: 69
+            id: 69,
+            side: 'alliance'
           },
           {
             name: 'Exodar',
-            id: 930
+            id: 930,
+            side: 'alliance'
           },
           {
             name: 'Gilneas',
-            id: 1134
+            id: 1134,
+            side: 'alliance'
           },
           {
             name: 'Gnomeregan',
-            id: 54
+            id: 54,
+            side: 'alliance'
           },
           {
             name: 'Ironforge',
-            id: 47
+            id: 47,
+            side: 'alliance'
           },
           {
             name: 'Stormwind',
-            id: 72
+            id: 72,
+            side: 'alliance'
           }          
         ]
       },
       {
         name: 'Alliance Forces',
+        side: 'alliance',
         factions: [
           {
             name: 'Bizmo\'s Brawlpub',
-            id: 2011
+            id: 2011,
+            side: 'alliance'
           },
           {
             name: 'Bizmo\'s Brawlpub (Season 2)',
-            id: 1691
+            id: 1691,
+            side: 'alliance'
           },
           {
             name: 'Silverwing Sentinels',
-            id: 890
+            id: 890,
+            side: 'alliance'
           },
           {
             name: 'Stormpike Guard',
-            id: 730
+            id: 730,
+            side: 'alliance'
           },
           {
             name: 'The League of Arathor',
-            id: 509
+            id: 509,
+            side: 'alliance'
           }          
+        ]
+      },
+      {
+        name: 'Horde',
+        side: 'horde',
+        factions: [
+          {
+            name: 'Bilgewater Cartel',
+            id: 1133,
+            side: 'horde'
+          },
+          {
+            name: 'Darkspear Trolls',
+            id: 530,
+            side: 'horde'
+          },
+          {
+            name: 'Orgrimmar',
+            id: 76,
+            side: 'horde'
+          },
+          {
+            name: 'Silvermoon City',
+            id: 911,
+            side: 'horde'
+          },
+          {
+            name: 'Thunder Bluff',
+            id: 81,
+            side: 'horde'
+          },
+          {
+            name: 'Undercity',
+            id: 68,
+            side: 'horde'
+          }
+        ]
+      },
+      {
+        name: 'Horde Forces',
+        side: 'horde',
+        factions: [
+          {
+            name: 'Brawl\'gar Arena',
+            id: 2010,
+            side: 'horde'
+          },
+          {
+            name: 'Brawl\'gar Arena (Season 2)',
+            id: 1690,
+            side: 'horde'
+          },
+          {
+            name: 'Frostwolf Clan',
+            id: 729,
+            side: 'horde'
+          },
+          {
+            name: 'The Defilers',
+            id: 510,
+            side: 'horde'
+          },
+          {
+            name: 'Warsong Outriders',
+            id: 889,
+            side: 'horde'
+          }
         ]
       },
       {

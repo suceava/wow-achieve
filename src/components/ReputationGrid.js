@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import wowData from '../data/wow-data.js';
+import sideAlliance from '../../public/alliance.png';
+import sideHorde from '../../public/horde.png';
 
 class ReputationGrid extends Component {
   headerRow(data) {
     const ths = data.columns.map(col => {
       const cls = 'rep-grid-column rep-grid-header-column ' + 
         (col.name === 'Faction' ? 'rep-grid-column-faction' : 'rep-grid-column-rep');
+      const key = (col.realm ? col.realm + '_' : '') + col.name;
 
       function removeCharacter(e) {
         e.preventDefault();
@@ -18,7 +21,7 @@ class ReputationGrid extends Component {
       }
 
       return(
-        <div className={cls} key={col.name}>
+        <div className={cls} key={key}>
           <div className='rep-grid-header-column-rep'>
             <div>{col.name}</div>
             {col.realm && 
@@ -48,15 +51,26 @@ class ReputationGrid extends Component {
 
   bodyRowCols(cols, row) {
     return cols.map(col => {
-      const colName = col.name;
+      const colName = (col.realm ? col.realm + '_' : '' ) + col.name;
       let cls = 'rep-grid-column ';
 
       if (colName === 'Faction') {
         // first column is the faction name
-        cls += 'rep-grid-column-faction ' + (row.faction.id ? 'rep-grid-faction ' : `rep-grid-faction-category-${row.depth}`);
+        const sideImg = (row.faction.side ?
+          <div className='rep-grid-column-faction-icon'>
+            <img src={row.faction.side === 'alliance' ? sideAlliance : sideHorde} alt={row.faction.side} />
+          </div>
+          : 
+          ''
+        );
+
+        cls += 'rep-grid-column-faction ' + (!row.faction.hasFactions ? 'rep-grid-faction ' : `rep-grid-faction-category-${row.depth}`);
         return (
           <div className={cls} key={`${row.faction.name}_${colName}`}>
-            <div className='rep-grid-column-faction-label'>{row.faction.name}</div>
+            <div className='rep-grid-column-faction-label'>
+              {row.faction.name}
+              {sideImg}
+            </div>
           </div>
         );
       }

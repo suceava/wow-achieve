@@ -27,24 +27,26 @@ class ReputationGridContainer extends Component {
       const row = {
         faction: {
           id: fac.id,
-          name: fac.name
+          name: fac.name,
+          side: fac.side,
+          hasFactions: false
         },
-        reputations: [],
         depth: depth
       }
       rows.push(row);
 
-      if (!fac.factions) {
+      if (fac.id) {
         // find character reps
         characters.forEach(char => {
           const r = char.reputation.find(e => e.id === fac.id);
           if (r) {
-            row[char.name] = r;
+            row[char.realm + '_' + char.name] = r;
           }
         });
       }
-      else {
-        // not an actual rep but a rep category
+
+      if (fac.factions) {
+        row.faction.hasFactions = true;
 
         // recurse into sub-factions
         this.getReputationGridRows(fac.factions, characters, rows, depth + 1);
