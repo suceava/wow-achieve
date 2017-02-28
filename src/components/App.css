@@ -4,19 +4,6 @@
   color: rgb(239, 201, 160);
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-  text-align: center;
-}
-
 .character-search {
   text-align: left;
   display: flex;
@@ -24,6 +11,10 @@
   flex-basis: 300px;
   margin: auto;
   padding: 20px;
+  position: fixed;
+  width: 100%;
+  background-color: rgb(7, 6, 4);
+  z-index: 10;
 }
 .character-search-realm {
   flex-basis: 200px;
@@ -54,6 +45,7 @@
 .rep-grid-container {
   display: flex;
   justify-content: center;
+  padding-top: 76px;
 }
 
 /* rep grid */
@@ -62,23 +54,37 @@
   color: #c09a67;
   font-size: 12px;
   line-height: 22px;
-  padding: 20px;
+  padding: 0 20px 20px 20px;
   display: flex;
   flex-direction: column;
   align-content: center;
   flex-basis: 400px;
 }
 
+.rep-grid-body {
+  padding-top: 96px;
+}
+
 .rep-grid-header-row {
   color: #7e3406;
   font-size: 26px;
+  position: fixed;
+  z-index: 9;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  height: 56px;
+  background: linear-gradient(to right, #1a0f08, #2d160d, #1a0f08);
 }
 
+.rep-grid-header-row,
 .rep-grid-row {
   display: flex;
   flex-direction: row;
-  padding: 4px 0;
   border-bottom: 1px solid rgb(53, 28, 14);
+}
+
+.rep-grid-row {
+  padding: 4px 0;
 }
 .rep-grid-column {
 }
@@ -86,6 +92,10 @@
 .rep-grid-column-faction {
   flex-basis: 240px;
   min-width: 240px;
+}
+.rep-grid-column-header-faction-icon {
+  float: right;
+  margin-right: 14px;
 }
 .rep-grid-column-faction-icon {
   float: right;
@@ -104,9 +114,6 @@
   margin-right: 20px;
 }
 
-.rep-grid-header-row {
-  padding-bottom: 20px;
-}
 .rep-grid-header-row .rep-grid-column-rep {
   color: #fff;
 }

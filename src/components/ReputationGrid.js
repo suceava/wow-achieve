@@ -23,7 +23,9 @@ class ReputationGrid extends Component {
       return(
         <div className={cls} key={key}>
           <div className='rep-grid-header-column-rep'>
-            <div>{col.name}</div>
+            <div>
+              {col.name}
+            </div>
             {col.realm && 
               <div 
                 className='rep-grid-header-close' 
@@ -33,6 +35,10 @@ class ReputationGrid extends Component {
                 data-realm={col.realm}>x</div>}
             {col.realm &&
               <div className='rep-grid-header-column-rep-details'>
+                <div className='rep-grid-column-header-faction-icon'>
+                  <img src={col.faction === 'alliance' ? sideAlliance : sideHorde} alt={col.faction} />
+                </div>
+
                 <div className={`rep-grid-column-rep-class class-${col.class}`}>{col.level} {wowData.CLASSES[col.class]}</div>
                 <div className='rep-grid-column-rep-realm'>{col.realm}</div>
               </div>
@@ -43,7 +49,7 @@ class ReputationGrid extends Component {
     });
 
     return(
-      <div className='rep-grid-row rep-grid-header-row'>
+      <div className='rep-grid-header-row'>
         {ths}
       </div>
     );
@@ -56,6 +62,8 @@ class ReputationGrid extends Component {
 
       if (colName === 'Faction') {
         // first column is the faction name
+
+        // add faction icon
         const sideImg = (row.faction.side ?
           <div className='rep-grid-column-faction-icon'>
             <img src={row.faction.side === 'alliance' ? sideAlliance : sideHorde} alt={row.faction.side} />
@@ -110,11 +118,20 @@ class ReputationGrid extends Component {
   }
 
   bodyRows(data) {
-    const rows = data.rows.map(row =>
-      <div className='rep-grid-row' key={row.faction.name}>
-        {this.bodyRowCols(data.columns, row)}
-      </div>
-    );
+    const rows = data.rows.map(row => {
+      if (row.faction.side === 'alliance' && !data.showAlliance ||
+          row.faction.side === 'horde' && !data.showHorde) 
+      {
+        // don't show faction-specific rep if we don't have character for that faction
+        return;
+      }
+
+      return (
+        <div className='rep-grid-row' key={row.faction.name}>
+          {this.bodyRowCols(data.columns, row)}
+        </div>
+      );
+    });
     return(rows);
   }
 
@@ -122,7 +139,9 @@ class ReputationGrid extends Component {
     return(
       <div className='rep-grid'>
         {this.headerRow(this.props.data)}
-        {this.bodyRows(this.props.data)}
+        <div className='rep-grid-body'>
+          {this.bodyRows(this.props.data)}
+        </div>
       </div>
     );
   }

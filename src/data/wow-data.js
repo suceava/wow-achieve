@@ -3,9 +3,19 @@ import moment from 'moment';
 import wow_factions from './wow-factions.js';
 
 const wowData =  {
-  BASE_URL: 'https://us.api.battle.net/wow/',
   API_KEY: '',
+  REGION: 'us',
   LOCALE: 'en-US',
+  BASE_URL: 'api.battle.net/wow/',
+
+  REGIONS: [
+    { value: 'us', text: 'North America' },
+    { value: 'eu', text: 'Europe' }
+  ],
+  LOCALES: [
+    { region: 'us', value: 'en-US' },
+    { region: 'eu', value: 'en-GB' }
+  ],
 
   STANDINGS: [
     'Hated',      // 0
@@ -48,7 +58,7 @@ const wowData =  {
     }
 
     const hasParams = url.indexOf('?') > 0;
-    const fullUrl = `${this.BASE_URL}${url}` + (hasParams ? '&' : '?') + `locale=${this.LOCALE}&apikey=${this.API_KEY}`;
+    const fullUrl = `https://${this.REGION}.${this.BASE_URL}${url}` + (hasParams ? '&' : '?') + `locale=${this.LOCALE}&apikey=${this.API_KEY}`;
     return fetch(fullUrl)
       .then(response => {
         // check status for a 200 code, otherwise throw error

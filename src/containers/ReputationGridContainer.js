@@ -14,7 +14,8 @@ class ReputationGridContainer extends Component {
           realm: char.realm,
           level: char.level,
           class: char.class,
-          race: char.race
+          race: char.race,
+          faction: char.faction === 0 ? 'alliance' : 'horde'
         });
       });
     }
@@ -60,6 +61,10 @@ class ReputationGridContainer extends Component {
       rows: []
     };
     this.getReputationGridRows(factions, characters, data.rows, 1);
+
+    data.showAlliance = !!data.columns.find(c => c.faction === 'alliance');
+    data.showHorde = !!data.columns.find(c => c.faction === 'horde');
+
     return data;
   }
 

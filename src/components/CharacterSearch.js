@@ -25,24 +25,22 @@ class CharacterSearch extends Component {
     return(
       <div className="character-search">        
         <div className='character-search-realm'>
-          <div>Realm</div>
           <Select
             name='realms-select'
             options={this.props.realms.map(realm => ({ label: realm.name, value: realm.slug}))}
             value={this.state.realm}
+            placeholder='Realm'
             onChange={option => this.setState({ realm: option.value})}
           />
         </div>
         
         <div className='character-search-char'>
-          <div>Character</div>
           <div>
-            <input type='text' name='character-input' onChange={(e) => this.characterOnChange(e)} />
+            <input type='text' name='character-input' placeholder='Character' onChange={(e) => this.characterOnChange(e)} />
           </div>
         </div>
 
         <div className='character-search-buttonbar'>
-          <div>&nbsp;</div>
           <div>
             <button onClick={(e) => this.loadCharacter(e)}>Load</button>
           </div>
