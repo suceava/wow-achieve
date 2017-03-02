@@ -138,7 +138,9 @@ class ReputationGrid extends Component {
   render() {
     return(
       <div className='rep-grid'>
-        {this.headerRow(this.props.data)}
+        <div className='rep-grid-header'>
+          {this.headerRow(this.props.data)}
+        </div>
         <div className='rep-grid-body'>
           {this.bodyRows(this.props.data)}
         </div>

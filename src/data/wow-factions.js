@@ -717,7 +717,7 @@ const WOW_FACTIONS = [
     name: 'Guild',
     factions: [
       {
-        name: '_guild_',
+        name: '',
         id: 1168
       }
     ]
