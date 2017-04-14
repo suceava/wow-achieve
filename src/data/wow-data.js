@@ -11,6 +11,7 @@ const wowData =  {
   BASE_OAUTH_URL: 'battle.net/oauth/token',
   BASE_GAME_API_URL: 'api.blizzard.com/data/wow/',
   BASE_PROFILE_API_URL: 'api.blizzard.com/profile/wow/',
+  ICON_URL: 'http://media.blizzard.com/wow/icons/56/',
 
   REGIONS: [
     { value: 'us', text: 'North America' },
@@ -34,6 +35,8 @@ const wowData =  {
 
     const fullUrl = `https://${this.REGION}.${this.BASE_OAUTH_URL}`;
     const encodedCreds = Buffer.from(`${this.CLIENT_ID}:${this.CLIENT_SECRET}`).toString('base64');
+
+  _DEV_ALWAYS_READ_CACHED_DATA: true,
 
     const options = {
       method: 'POST',
@@ -66,7 +69,11 @@ const wowData =  {
     if (data) {
       const cachedData = JSON.parse(data);
       // make sure cache is not expired
-      if (cachedData.expirationDate && moment().isBefore(cachedData.expirationDate)) {
+      if (this._DEV_ALWAYS_READ_CACHED_DATA || 
+          (cachedData.expirationDate && 
+           moment().isBefore(cachedData.expirationDate))
+         ) 
+      {
         return Promise.resolve(cachedData);
       }
     }
