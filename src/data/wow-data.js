@@ -7,6 +7,7 @@ const wowData =  {
   REGION: 'us',
   LOCALE: 'en-US',
   BASE_URL: 'api.battle.net/wow/',
+  ICON_URL: 'http://media.blizzard.com/wow/icons/56/',
 
   REGIONS: [
     { value: 'us', text: 'North America' },
@@ -53,6 +54,8 @@ const wowData =  {
     'Demon Hunter'    // 12
   ],
 
+  _DEV_ALWAYS_READ_CACHED_DATA: true,
+
   _getJson: function(url, expirationDays) {
     expirationDays = expirationDays || 365;
 
@@ -61,7 +64,11 @@ const wowData =  {
     if (data) {
       const cachedData = JSON.parse(data);
       // make sure cache is not expired
-      if (cachedData.expirationDate && moment().isBefore(cachedData.expirationDate)) {
+      if (this._DEV_ALWAYS_READ_CACHED_DATA || 
+          (cachedData.expirationDate && 
+           moment().isBefore(cachedData.expirationDate))
+         ) 
+      {
         return Promise.resolve(cachedData);
       }
     }
