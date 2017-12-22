@@ -85,12 +85,12 @@ class ReputationGrid extends Component {
       else {
         // reputation column
         const rep = row[colName];
-        const val = (rep ? `${rep.value} / ${rep.max}` : '');
+        const val = (rep ? (rep.max > 0 ? `${rep.value} / ${rep.max}` : ' ') : '');
         const width = (rep ? 100 * rep.value / rep.max : 0);
         const widthStyle = `${width}%`;
-        const standing = (rep ? wowData.STANDINGS[rep.standing] : '');
+        const standing = (rep ? (row.faction.npc ? wowData.NPC_STANDINGS[rep.standing]: wowData.STANDINGS[rep.standing]) : '');
 
-        cls += `rep-grid-column-rep rep-grid-column-rep-standing-${standing}`;
+        cls += `rep-grid-column-rep rep-grid-column-rep-standing-${standing.replace(' ', '-')} ` + (!row.faction.hasFactions ? '' : `rep-grid-rep-category-${row.depth}`);
 
         const repBar = (val ?
           <div className='rep-grid-rep-container'>

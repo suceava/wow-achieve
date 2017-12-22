@@ -30,3 +30,4 @@ node_modules
 \.vscode/
 
 build/
+wow_data
