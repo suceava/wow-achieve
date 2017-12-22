@@ -28,6 +28,15 @@ const wowData =  {
     'Exalted'     // 7
   ],
 
+  NPC_STANDINGS: [
+    'Stranger',     // 0
+    'Acquaintance', // 1
+    'Pal',          // 2
+    'Buddy',        // 3
+    'Good Friend',  // 4
+    'Best Friend'   // 5
+  ],
+
   CLASSES: [
     '',
     'Warrior',        // 1

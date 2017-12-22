@@ -4,8 +4,36 @@ const WOW_FACTIONS = [
     name: 'Legion',
     factions: [
       {
+        name: 'Akule Riverhorn',
+        id: 2099,
+        npc: true
+      },
+      {
+        name: 'Argussian Reach',
+        id: 2170
+      },
+      {
+        name: 'Armies of Legionfall',
+        id: 2045
+      },
+      {
+        name: 'Army of the Light',
+        id: 2165
+      },
+      {
+        name: 'Chromie',
+        id: 2135,
+        npc: true
+      },
+      {
+        name: 'Corbyn',
+        id: 2100,
+        npc: true
+      },
+      {
         name: 'Conjurer Margoss',
-        id: 1975
+        id: 1975,
+        npc: true
       },
       {
         name: 'Court of Farondis',
@@ -20,24 +48,28 @@ const WOW_FACTIONS = [
         id: 1828
       },
       {
-        name: 'Illidari',
-        id: 1947
+        name: 'Ilyssia of the Waters',
+        id: 2097,
+        npc: true
       },
       {
-        name: 'Jandvik Vrykul',
-        id: 1888
+        name: 'Impus',
+        id: 2102,
+        npc: true
       },
       {
-        name: 'Moonguard',
-        id: 1899
+        name: 'Keeper Raynae',
+        id: 2098,
+        npc: true
+      },
+      {
+        name: 'Sha\'leth',
+        id: 2101,
+        npc: true
       },
       {
         name: 'Talon\'s Vengeance',
         id: 2018
-      },
-      {
-        name: 'The First Responders',
-        id: 1984
       },
       {
         name: 'The Nightfallen',
@@ -191,7 +223,8 @@ const WOW_FACTIONS = [
         factions: [
           {
             name: 'Nat Pagle',
-            id: 1358
+            id: 1358,
+            npc: true
           }
         ]
       },
@@ -201,43 +234,53 @@ const WOW_FACTIONS = [
         factions: [
           {
             name: 'Chee Chee',
-            id: 1277
+            id: 1277,
+            npc: true
           },
           {
             name: 'Ella',
-            id: 1275
+            id: 1275,
+            npc: true
           },
           {
             name: 'Farmer Fung',
-            id: 1283
+            id: 1283,
+            npc: true
           },
           {
             name: 'Fish Fellreed',
-            id: 1282
+            id: 1282,
+            npc: true
           },
           {
             name: 'Gina Mudclaw',
-            id: 1281
+            id: 1281,
+            npc: true
           },
           {
             name: 'Haohan Mudclaw',
-            id: 1279
+            id: 1279,
+            npc: true
           },
           {
             name: 'Jogu the Drunk',
-            id: 1273
+            id: 1273,
+            npc: true
           },
           {
             name: 'Old Hillpaw',
-            id: 1276
+            id: 1276,
+            npc: true
           },
           {
             name: 'Sho',
-            id: 1278
+            id: 1278,
+            npc: true
           },
           {
             name: 'Tina Mudclaw',
-            id: 1280
+            id: 1280,
+            npc: true
           }
         ]
       }

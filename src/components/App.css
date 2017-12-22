@@ -1,6 +1,6 @@
 .App {
   font: Arial, Verdana, sans-serif;
-  background-color: rgb(7, 6, 4);
+  background-color: rgb(26, 4, 7);
   color: rgb(239, 201, 160);
 }
 
@@ -14,7 +14,7 @@
   padding: 20px;
   position: fixed;
   width: 100%;
-  background-color: rgb(7, 6, 4);
+  background-color: rgb(26, 4, 7);
   z-index: 10;
 }
 .character-search-realm {
@@ -52,9 +52,11 @@
 
 /* rep grid */
 .rep-grid {
-  background: linear-gradient(to right, #1a0f08, #2d160d, #1a0f08);
+  /* background: linear-gradient(to right, #1a0f08, #2d160d, #1a0f08); */
   color: #c09a67;
-  font-size: 12px;
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
   line-height: 22px;
   padding: 0 20px 20px 20px;
   display: flex;
@@ -66,7 +68,8 @@
 .rep-grid-header {
   position: fixed;
   z-index: 9;
-  background: linear-gradient(to right, #1a0f08, #2d160d, #1a0f08);
+  background-color: rgb(26, 4, 7);
+  /* background: linear-gradient(to right, #1a0f08, #2d160d, #1a0f08); */
   min-width: 400px;
 }
 
@@ -82,7 +85,7 @@
 .rep-grid-row {
   display: flex;
   flex-direction: row;
-  border-bottom: 1px solid rgb(53, 28, 14);
+  /* border-bottom: 1px solid rgb(53, 28, 14); */
 }
 
 .rep-grid-body {
@@ -148,13 +151,18 @@
   color: #5b616a;
 }
 
+.rep-grid-column-faction {
+  color: rgb(235, 222, 194);
+}
 .rep-grid-faction-category-1 {
-  color: #fff9b2;
-  font-size: 22px;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+  text-transform: uppercase;
 }
 .rep-grid-faction-category-2 {
-  color: #9c3802;
-  font-size: 18px;
+  color: #fff;
+  font-size: 16px;
 }
 .rep-grid-faction-category-2 .rep-grid-column-faction-label {
   margin-left: 10px;
@@ -163,14 +171,26 @@
   margin-left: 20px;
 }
 
+.rep-grid-faction-category-1,
+.rep-grid-rep-category-1 {
+  border-top: 1px solid rgba(255,255,255,.25);
+  line-height: 64px;
+  padding-top: 10px;
+  margin-top: 10px;
+}
+.rep-grid-faction-category-2,
+.rep-grid-rep-category-2 {
+  padding-top: 30px;
+}
+
 .rep-grid-rep-container {
   display: flex;
 }
 
   /* rep bars */
 .rep-grid-rep-bar {
-  background-color: rgb(84, 43, 25);
-  background: linear-gradient(to right, rgb(53, 28, 14), rgb(84, 43, 25), rgb(53, 28, 14));
+  background-color: #181818;
+  border: 1px solid rgba(255,255,255,.2);
   position: relative;
   flex-basis: 120px;
   flex-grow: 1;
@@ -178,12 +198,12 @@
 .rep-grid-rep-bar,
 .rep-grid-rep-bar-fill {
   height: 22px;
-  border-radius: 3px;
 }
 
 .rep-grid-rep-bar-score {
   color: #fff;
-  text-align: center;
+  text-align: left;
+  padding-left: 10px;
   position: absolute;
   top: 0;
   left: 0;
@@ -191,9 +211,10 @@
   z-index: 2;
 }
 
-.rep-grid-rep-bar-score,
-.rep-grid-rep-standing {
+.rep-grid-rep-bar-score {
+  font-size: 10px;
   font-weight: bold;
+  text-shadow: 0 0 1px transparent, 0 1px 2px rgba(0,0,0,.8);
 }
 .rep-grid-rep-standing {
   flex-basis: 90px;
@@ -202,39 +223,51 @@
 
 .rep-grid-column-rep-standing-Hated,
 .rep-grid-column-rep-standing-Hostile,
-.rep-grid-column-rep-standing-Unfriendly {
-  color: #a00000;
+.rep-grid-column-rep-standing-Unfriendly,
+.rep-grid-column-rep-standing-Stranger {
+  color: #d90e03;
 }
 .rep-grid-column-rep-standing-Hated .rep-grid-rep-bar-fill,
 .rep-grid-column-rep-standing-Hostile .rep-grid-rep-bar-fill,
-.rep-grid-column-rep-standing-Unfriendly .rep-grid-rep-bar-fill {
-  background-color: #a00000;
-  background: linear-gradient(#800000, #a00000, #800000);
+.rep-grid-column-rep-standing-Unfriendly .rep-grid-rep-bar-fill,
+.rep-grid-column-rep-standing-Stranger .rep-grid-rep-bar-fill {
+  background-color: #d90e03;
+  background: linear-gradient(to right, #8e0902, #d90e03);
 }
-.rep-grid-column-rep-standing-Neutral {
-  color: #d2ac00;
+.rep-grid-column-rep-standing-Neutral,
+.rep-grid-column-rep-standing-Acquaintance {
+  color: #edba03;
 }
-.rep-grid-column-rep-standing-Neutral .rep-grid-rep-bar-fill {
-  background-color: #d2ac00;
-  background: linear-gradient(#c28c00, #d2ac00, #c28c00);
+.rep-grid-column-rep-standing-Neutral .rep-grid-rep-bar-fill,
+.rep-grid-column-rep-standing-Acquaintance .rep-grid-rep-bar-fill {
+  background-color: #edba03;
+  background: linear-gradient(to right, #a17f02, #edba03);
 }
 .rep-grid-column-rep-standing-Friendly,
 .rep-grid-column-rep-standing-Honored,
-.rep-grid-column-rep-standing-Revered {
-  color: #51ab01;
+.rep-grid-column-rep-standing-Revered,
+.rep-grid-column-rep-standing-Pal,
+.rep-grid-column-rep-standing-Buddy,
+.rep-grid-column-rep-standing-Good-Friend {
+  color: #0f9601;
 }
 .rep-grid-column-rep-standing-Friendly .rep-grid-rep-bar-fill,
 .rep-grid-column-rep-standing-Honored .rep-grid-rep-bar-fill,
-.rep-grid-column-rep-standing-Revered .rep-grid-rep-bar-fill {
-  background-color: #51ab01;
-  background: linear-gradient(#418b01, #51ab01, #418b01);
+.rep-grid-column-rep-standing-Revered .rep-grid-rep-bar-fill,
+.rep-grid-column-rep-standing-Pal .rep-grid-rep-bar-fill,
+.rep-grid-column-rep-standing-Buddy .rep-grid-rep-bar-fill,
+.rep-grid-column-rep-standing-Good-Friend .rep-grid-rep-bar-fill {
+  background-color: #0f9601;
+  background: linear-gradient(to right, #074a00, #0f9601);
 }
-.rep-grid-column-rep-standing-Exalted {
-  color: #00be70;
+.rep-grid-column-rep-standing-Exalted,
+.rep-grid-column-rep-standing-Best-Friend {
+  color: #28a687;
 }
-.rep-grid-column-rep-standing-Exalted .rep-grid-rep-bar-fill {
-  background-color: #00be70;
-  background: linear-gradient(#00ae60, #00be70, #00ae60);
+.rep-grid-column-rep-standing-Exalted .rep-grid-rep-bar-fill,
+.rep-grid-column-rep-standing-Best-Friend .rep-grid-rep-bar-fill {
+  background-color: #28a687;
+  background: linear-gradient(to right, #196855, #28a687);
 }
 
 /* end rep grid */

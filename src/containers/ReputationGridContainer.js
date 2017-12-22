@@ -30,6 +30,7 @@ class ReputationGridContainer extends Component {
           id: fac.id,
           name: fac.name,
           side: fac.side,
+          npc: fac.npc,
           hasFactions: false
         },
         depth: depth
