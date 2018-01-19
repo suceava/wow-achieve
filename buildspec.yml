@@ -1,7 +1,7 @@
 version: 0.2
 
 phases:
-  pre-build:
+  pre_build:
     commands:
       - echo Install dependencies
       - npm install
@@ -9,7 +9,7 @@ phases:
     commands:
       - echo Build app on `date`
       - npm run build
-  post-build:
+  post_build:
     commands:
       - echo Build completed on `date`
 
