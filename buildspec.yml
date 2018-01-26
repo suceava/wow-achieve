@@ -11,6 +11,8 @@ phases:
       - npm run build
   post_build:
     commands:
+      - echo Copy files to root
+      - aws s3 sync ./build s3://wow-achieve
       - echo Build completed on `date`
 
 artifacts:
