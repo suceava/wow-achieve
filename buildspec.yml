@@ -5,6 +5,10 @@ phases:
     commands:
       - echo Install dependencies
       - npm install
+      - echo Update build date
+      - ./node_modules/.bin/apv update build
+      - echo Copy appversion.json to public
+      - cp appversion.json ./public/appversion.json
   build:
     commands:
       - echo Build app on `date`
