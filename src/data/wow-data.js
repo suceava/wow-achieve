@@ -3,7 +3,7 @@ import moment from 'moment';
 import wow_factions from './wow-factions.js';
 
 const wowData =  {
-  API_KEY: '',
+  API_KEY: process.env.REACT_APP_API_KEY,
   REGION: 'us',
   LOCALE: 'en-US',
   BASE_URL: 'api.battle.net/wow/',
