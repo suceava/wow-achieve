@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import './App.css';
 import wowData from '../data/wow-data.js';
 import CharacterSearch from './CharacterSearch.js';
+import Footer from './Footer.js';
 import ReputationGridContainer from '../containers/ReputationGridContainer.js';
 
 class App extends Component {
@@ -129,6 +130,8 @@ class App extends Component {
           characters={this.state.characters}
           handleRemove={this.handleRemoveCharacter}
         />
+
+        <Footer />
       </div>
     );
   }
