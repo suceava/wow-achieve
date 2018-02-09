@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Route, Link, Redirect, Switch } from 'react-router-dom';
 //import logo from '../../public/wow-logo.png';
 import './App.css';
 import wowData from '../data/wow-data.js';
@@ -125,11 +126,19 @@ class App extends Component {
           handleSearch={this.handleSearchCharacter}
         />
 
-        <ReputationGridContainer
-          factions={this.state.factions}
-          characters={this.state.characters}
-          handleRemove={this.handleRemoveCharacter}
-        />
+        <Switch>
+          <Route exact path="/reputation" render={() => 
+            <ReputationGridContainer
+              factions={this.state.factions}
+              characters={this.state.characters}
+              handleRemove={this.handleRemoveCharacter}
+            />
+          }/>
+
+          <Route path="/" render={() =>
+            <Redirect to="/reputation"/>
+          }/>
+        </Switch>
 
         <Footer />
       </div>
