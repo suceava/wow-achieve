@@ -54,7 +54,7 @@ const wowData =  {
     'Demon Hunter'    // 12
   ],
 
-  _DEV_ALWAYS_READ_CACHED_DATA: true,
+  _DEV_ALWAYS_READ_CACHED_DATA: false,
 
   _getJson: function(url, expirationDays) {
     expirationDays = expirationDays || 365;

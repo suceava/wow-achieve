@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Route, Link, Redirect, Switch } from 'react-router-dom';
+import { Route, Redirect, Switch } from 'react-router-dom';
 //import logo from '../../public/wow-logo.png';
 import './App.css';
 import wowData from '../data/wow-data.js';
 import CharacterSearch from './CharacterSearch.js';
+import Nav from './Nav.js';
 import Footer from './Footer.js';
 import ReputationGridContainer from '../containers/ReputationGridContainer.js';
 
@@ -125,6 +126,8 @@ class App extends Component {
           realms={this.state.realms}
           handleSearch={this.handleSearchCharacter}
         />
+
+        <Nav />
 
         <Switch>
           <Route exact path="/reputation" render={() => 
