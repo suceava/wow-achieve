@@ -16,7 +16,7 @@ phases:
   post_build:
     commands:
       - echo Copy files to root
-      - aws s3 sync ./build s3://wow-achieve
+      - aws s3 sync ./build s3://wow.gnarlybits.com
       - echo Build completed on `date`
 
 artifacts:
