@@ -36,7 +36,7 @@ const wowData =  {
     const fullUrl = `https://${this.REGION}.${this.BASE_OAUTH_URL}`;
     const encodedCreds = Buffer.from(`${this.CLIENT_ID}:${this.CLIENT_SECRET}`).toString('base64');
 
-  _DEV_ALWAYS_READ_CACHED_DATA: true,
+  _DEV_ALWAYS_READ_CACHED_DATA: false,
 
     const options = {
       method: 'POST',
