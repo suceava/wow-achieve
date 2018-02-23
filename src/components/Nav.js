@@ -22,7 +22,7 @@ class Nav extends Component {
           </div>
 
           <div className='nav-item-container'>
-            <NavLink to='/achievements' className='nav-link'>
+            <NavLink to='/achievements' activeClassName='nav-link-active' className='nav-link'>
               <div className='nav'>ACHIEVEMENTS</div>
             </NavLink>
           </div>
