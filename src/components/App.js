@@ -7,6 +7,7 @@ import CharacterSearch from './CharacterSearch.js';
 import Nav from './Nav.js';
 import Footer from './Footer.js';
 import ReputationGridContainer from '../containers/ReputationGridContainer.js';
+import AchievementsGridContainer from '../containers/AchievementsGridContainer.js';
 
 class App extends Component {
   constructor(props) {
@@ -148,6 +149,13 @@ class App extends Component {
           <Route exact path="/reputation" render={() => 
             <ReputationGridContainer
               factions={this.state.factions}
+              characters={this.state.characters}
+              handleRemove={this.handleRemoveCharacter}
+            />
+          }/>
+
+          <Route exact path="/achievements" render={() =>
+            <AchievementsGridContainer
               characters={this.state.characters}
               handleRemove={this.handleRemoveCharacter}
             />
