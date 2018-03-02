@@ -85,10 +85,12 @@ class ReputationGrid extends Component {
       else {
         // reputation column
         const rep = row[colName];
+        // if character has no rep with a faction there will still be a rep object with just rep ID & name, but no other props
+        const hasRep = rep && rep.standing;
         const val = (rep ? (rep.max > 0 ? `${rep.value} / ${rep.max}` : ' ') : '');
-        const width = (rep ? 100 * rep.value / rep.max : 0);
+        const width = (hasRep ? 100 * rep.value / rep.max : 0);
         const widthStyle = `${width}%`;
-        const standing = (rep ? (row.faction.npc ? wowData.NPC_STANDINGS[rep.standing]: wowData.STANDINGS[rep.standing]) : '');
+        const standing = (hasRep ? (row.faction.npc ? wowData.NPC_STANDINGS[rep.standing]: wowData.STANDINGS[rep.standing]) : '');
 
         cls += `rep-grid-column-rep rep-grid-column-rep-standing-${standing.replace(' ', '-')} ` + (!row.faction.hasFactions ? '' : `rep-grid-rep-category-${row.depth}`);
 
@@ -118,20 +120,27 @@ class ReputationGrid extends Component {
   }
 
   bodyRows(data) {
-    const rows = data.rows.map(row => {
-      if (row.faction.side === 'alliance' && !data.showAlliance ||
-          row.faction.side === 'horde' && !data.showHorde) 
-      {
-        // don't show faction-specific rep if we don't have character for that faction
-        return;
-      }
+    const rows = data.rows
+      .filter(row => {
+        // filter out side-specific factions if we don't have characters for that faction in our list
+        return (row.faction.side !== 'alliance' && row.faction.side !== 'horde') ||
+          (data.showAlliance && row.faction.side === 'alliance') ||
+          (data.showHorde && row.faction.side === 'horde');
+      })
+      .map(row => {
+        // if ((row.faction.side === 'alliance' && !data.showAlliance) ||
+        //     (row.faction.side === 'horde' && !data.showHorde)) 
+        // {
+        //   // don't show faction-specific rep if we don't have character for that faction
+        //   return;
+        // }
 
-      return (
-        <div className='rep-grid-row' key={row.faction.name}>
-          {this.bodyRowCols(data.columns, row)}
-        </div>
-      );
-    });
+        return (
+          <div className='rep-grid-row' key={row.faction.name}>
+            {this.bodyRowCols(data.columns, row)}
+          </div>
+        );
+      });
     return(rows);
   }
 
