@@ -329,7 +329,13 @@
 .footer {
   padding: 30px;
   text-align: center;
-  font-size: 10px;
   color: rgba(255,255,255,.3);
+}
+.footer .footer-feedback {
+  font-size: 11px;
+  margin-bottom: 5px;
+}
+.footer .footer-build {
+  font-size: 10px;  
 }
 /* end footer */
