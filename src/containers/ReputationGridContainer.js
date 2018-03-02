@@ -40,10 +40,14 @@ class ReputationGridContainer extends Component {
       if (fac.id) {
         // find character reps
         characters.forEach(char => {
-          const r = char.reputation.find(e => e.id === fac.id);
-          if (r) {
-            row[char.realm + '_' + char.name] = r;
+          let r = char.reputation.find(e => e.id === fac.id);
+          if (!r) {
+            r = {
+              id: fac.id,
+              name: fac.name
+            };
           }
+          row[char.realm + '_' + char.name] = r;
         });
       }
 
