@@ -100,7 +100,7 @@ const wowData =  {
   },
 
   loadCharacter: function(realm, character) {
-    return this._getJson(`character/${realm}/${character}?fields=reputation`, 1);
+    return this._getJson(`character/${realm}/${character}?fields=reputation&fields=achievements`, 1);
   },
 
   loadRealms: function() {
