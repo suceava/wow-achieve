@@ -19,7 +19,8 @@ class App extends Component {
       achievementCategories: [],
       achievements: [],
       factions: [],
-      character_list: []
+      character_list: [],
+      achievements_view: []
     };
 
     //wowData.API_KEY = this.state.apiKey;
@@ -37,7 +38,10 @@ class App extends Component {
     wowData.loadAchievementCategories()
       .then(response => this.setState({ achievementCategories: response.categories }));
     wowData.loadAchievements()
-      .then(response => this.setState({ achievements: response.achievements }));
+      .then(response => {
+        this.preProcessAchievements(response.achievements);
+        this.setState({ achievements: response.achievements });
+      });
     // load realms list
     wowData.loadRealms()
       .then(response => {
@@ -51,6 +55,27 @@ class App extends Component {
       });
 
     this.getLoadedCharacters();
+  }
+
+  preProcessAchievements(achievements) {
+    // preprocess achievements hierarchy
+    achievements.forEach(ach => {
+      // extract ids for each top level category
+      if (ach.achievements) {
+        ach.ids = ach.achievements.map(ach => ach.id);
+      }
+      else {
+        ach.ids = [];
+      }
+      if (ach.categories) {
+        // extract ids for each category
+        ach.categories.forEach(cat => {
+          cat.ids = cat.achievements.map(catAch => catAch.id);
+          // concat category ids to top level category ids
+          ach.ids = ach.ids.concat(cat.ids);
+        });
+      }
+    });
   }
 
   getLoadedCharacters() {
@@ -156,6 +181,8 @@ class App extends Component {
 
           <Route exact path="/achievements" render={() =>
             <AchievementsGridContainer
+              achievements_view={this.state.achievements_view}
+              achievements={this.state.achievements}
               characters={this.state.characters}
               handleRemove={this.handleRemoveCharacter}
             />
