@@ -1,4 +1,195 @@
 const WOW_FACTIONS = [
+  // Shadowlands
+  {
+    name: 'Shadowlands',
+    factions: [
+      {
+        name: 'Court of Harvesters',
+        id: 2413
+      },
+      {
+        name: 'Court of Night',
+        id: 2464
+      },
+      {
+        name: 'Stitchmasters',
+        id: 2462,
+        covenant: 'necrolord'
+      },
+      {
+        name: 'The Ascended',
+        id: 2407
+      },
+      {
+        name: 'The Avowed',
+        id: 2439
+      },
+      {
+        name: 'The Undying Army',
+        id: 2410
+      },
+      {
+        name: 'The Wild Hunt',
+        id: 2465
+      },
+      {
+        name: 'Ve\'nari',
+        id: 2432
+      },
+      {
+        name: 'The Ember Court',
+        covenant: 'venthyr',
+        factions: [
+          {
+            name: 'Alexandros Mograine',
+            id: 2450
+          },
+          {
+            name: 'Baroness Vashj',
+            id: 2446
+          },
+          {
+            name: 'Choofa',
+            id: 2454
+          },
+          {
+            name: 'Cryptkeeper Kassir',
+            id: 2455
+          },
+          {
+            name: 'Droman Aliothe',
+            id: 2456
+          },
+          {
+            name: 'Grandmaster Vole',
+            id: 2457
+          },
+          {
+            name: 'Hunt-Captain Korayn',
+            id: 2451
+          },
+          {
+            name: 'Kleia and Pelagos',
+            id: 2458
+          },
+          {
+            name: 'Lady Moonberry',
+            id: 2447
+          },
+          {
+            name: 'Mikanikos',
+            id: 2448
+          },
+          {
+            name: 'Plague Deviser Marileth',
+            id: 2461
+          },
+          {
+            name: 'Polemarch Adrestes',
+            id: 2452
+          },
+          {
+            name: 'Rendle and Cudgelface',
+            id: 2453
+          },
+          {
+            name: 'Sika',
+            id: 2459
+          },
+          {
+            name: 'Stonehead',
+            id: 2460
+          },
+          {
+            name: 'The Countess',
+            id: 2449
+          },
+        ]
+      }
+    ]
+  },
+
+  // Battle for Azeroth
+  {
+    name: 'Battle for Azeroth',
+    factions: [
+      {
+        name: '7th Legion',
+        id: 2159,
+        side: 'alliance'
+      },
+      {
+        name: 'Champions of Azeroth',
+        id: 2164
+      },
+      {
+        name: 'Honeyback Hive',
+        id: 2395
+      },
+      {
+        name: 'Order of Embers',
+        id: 2161,
+        side: 'alliance'
+      },
+      {
+        name: 'Proudmoore Admiralty',
+        id: 2160,
+        side: 'alliance'
+      },
+      {
+        name: 'Rajani',
+        id: 2415
+      },
+      {
+        name: 'Rustbolt Resistance',
+        id: 2391
+      },
+      {
+        name: 'Storm\'s Wake',
+        id: 2162,
+        side: 'alliance'
+      },
+      {
+        name: 'Talanji\'s Expedition',
+        id: 2156,
+        side: 'horde'
+      },
+      {
+        name: 'The Honorbound',
+        id: 2157,
+        side: 'horde'
+      },
+      {
+        name: 'The Unshackled',
+        id: 2373,
+        side: 'horde'
+      },
+      {
+        name: 'Tortollan Seekers',
+        id: 2163
+      },
+      {
+        name: 'Uldum Accord',
+        id: 2417
+      },
+      {
+        name: 'Voldunai',
+        id: 2158,
+        side: 'horde'
+      },
+      {
+        name: 'Waveblade Ankoan',
+        id: 2400,
+        side: 'alliance'
+      },
+      {
+        name: 'Zandalari Empire',
+        id: 2103,
+        side: 'horde'
+      }
+    ]
+  },
+
   // Legion
   {
     name: 'Legion',
