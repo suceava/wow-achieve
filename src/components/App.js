@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Link, Redirect, Switch } from 'react-router-dom';
+import { Route, Redirect, Switch } from 'react-router-dom';
 //import logo from '../../public/wow-logo.png';
 import './App.css';
 import wowData from '../data/wow-data.js';
@@ -14,6 +14,7 @@ class App extends Component {
     this.state = {
       characters: [],
       realms: [],
+      achievementCategories: [],
       achievements: [],
       factions: [],
       character_list: []
@@ -31,11 +32,21 @@ class App extends Component {
     wowData.loadFactions()
       .then(response => this.setState({ factions: response.factions }));
     // load achievements
+    wowData.loadAchievementCategories()
+      .then(response => this.setState({ achievementCategories: response.categories }));
     wowData.loadAchievements()
       .then(response => this.setState({ achievements: response.achievements }));
     // load realms list
     wowData.loadRealms()
-      .then(response => this.setState({ realms: response.realms }));
+      .then(response => {
+        // sort realms by name
+        const sortedRealms = response.realms.sort((a, b) => {
+          if (a.name < b.name) return -1;
+          if (a.name > b.name) return 1;
+          return 0;
+        });
+        this.setState({ realms: sortedRealms });
+      });
 
     this.getLoadedCharacters();
   }
@@ -45,12 +56,11 @@ class App extends Component {
     const data = localStorage.getItem('character_list');
     if (data) {
       const char_list = JSON.parse(data);
-
       this.setState({ character_list: char_list });
 
       // load the chars
       const charPromises = [];
-      char_list.forEach(c => charPromises.push(wowData.loadCharacter(c.realm, c.name)));
+      char_list.forEach(c => charPromises.push(wowData.loadCharacterProfile(c.realm, c.name)));
       // wait for all to load
       Promise.all(charPromises)
         .then(chars => {
@@ -63,6 +73,11 @@ class App extends Component {
     const _realm = realm.toLowerCase();
     const _name = name.toLowerCase();
 
+    if (!_realm || !_name) {
+      alert('Please select a realm and a character');
+      return;
+    }
+
     // make sure it's not a duplicate
     const char_list = this.state.character_list.slice();
     if (char_list.find(c => c.realm === _realm && c.name === _name)) {
@@ -71,7 +86,7 @@ class App extends Component {
     }
 
     const self = this;
-    wowData.loadCharacter(_realm, _name)
+    wowData.loadCharacterProfile(_realm, _name)
       .then(response => {
         // add character to list
         const chars = self.state.characters.slice();
@@ -110,7 +125,7 @@ class App extends Component {
 
       // remove character from state
       const chars = this.state.characters.slice();
-      const j = chars.findIndex(c => c.realm === realm && c.name === name);
+      const j = chars.findIndex(c => c.realm.name === realm && c.name === name);
       if (j >= 0) {
         chars.splice(j, 1);
         this.setState({ characters: chars });

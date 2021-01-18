@@ -8,6 +8,7 @@ class ReputationGrid extends Component {
     const ths = data.columns.map(col => {
       const cls = 'rep-grid-column rep-grid-header-column ' + 
         (col.name === 'Faction' ? 'rep-grid-column-faction' : 'rep-grid-column-rep');
+      const nameCls = col.realm ? `class-${col.class.id}` : '';
       const key = (col.realm ? col.realm + '_' : '') + col.name;
 
       function removeCharacter(e) {
@@ -23,9 +24,11 @@ class ReputationGrid extends Component {
       return(
         <div className={cls} key={key}>
           <div className='rep-grid-header-column-rep'>
-            <div>
+            <div className={nameCls}>
               {col.name}
             </div>
+            {col.realm && 
+              <div className='rep-grid-header-ilvl'>{col.ilvl} iLvl</div>}
             {col.realm && 
               <div 
                 className='rep-grid-header-close' 
@@ -36,10 +39,10 @@ class ReputationGrid extends Component {
             {col.realm &&
               <div className='rep-grid-header-column-rep-details'>
                 <div className='rep-grid-column-header-faction-icon'>
-                  <img src={col.faction === 'alliance' ? sideAlliance : sideHorde} alt={col.faction} />
+                  <img src={col.faction.type === wowData.FACTIONS.ALLIANCE ? sideAlliance : sideHorde} alt={col.faction.name} />
                 </div>
 
-                <div className={`rep-grid-column-rep-class class-${col.class}`}>{col.level} {wowData.CLASSES[col.class]}</div>
+                <div className={`rep-grid-column-rep-class`}>{col.level} {col.spec} {col.class.name}</div>
                 <div className='rep-grid-column-rep-realm'>{col.realm}</div>
               </div>
             }
@@ -66,7 +69,7 @@ class ReputationGrid extends Component {
         // add faction icon
         const sideImg = (row.faction.side ?
           <div className='rep-grid-column-faction-icon'>
-            <img src={row.faction.side === 'alliance' ? sideAlliance : sideHorde} alt={row.faction.side} />
+            <img src={row.faction.side === wowData.FACTIONS.ALLIANCE ? sideAlliance : sideHorde} alt={row.faction.side} />
           </div>
           : 
           ''
@@ -87,10 +90,10 @@ class ReputationGrid extends Component {
         const rep = row[colName];
         // if character has no rep with a faction there will still be a rep object with just rep ID & name, but no other props
         const hasRep = rep && rep.standing;
-        const val = (rep ? (rep.max > 0 ? `${rep.value} / ${rep.max}` : ' ') : '');
-        const width = (hasRep ? 100 * rep.value / rep.max : 0);
+        const val = (hasRep ? (rep.standing.max > 0 ? `${rep.standing.value} / ${rep.standing.max}` : ' ') : '');
+        const width = (hasRep ? 100 * rep.standing.value / rep.standing.max : 0);
         const widthStyle = `${width}%`;
-        const standing = (hasRep ? (row.faction.npc ? wowData.NPC_STANDINGS[rep.standing]: wowData.STANDINGS[rep.standing]) : '');
+        const standing = hasRep ? rep.standing.name['en_US'] : '';
 
         cls += `rep-grid-column-rep rep-grid-column-rep-standing-${standing.replace(' ', '-')} ` + (!row.faction.hasFactions ? '' : `rep-grid-rep-category-${row.depth}`);
 
@@ -123,13 +126,13 @@ class ReputationGrid extends Component {
     const rows = data.rows
       .filter(row => {
         // filter out side-specific factions if we don't have characters for that faction in our list
-        return (row.faction.side !== 'alliance' && row.faction.side !== 'horde') ||
-          (data.showAlliance && row.faction.side === 'alliance') ||
-          (data.showHorde && row.faction.side === 'horde');
+        return (row.faction.side !== wowData.FACTIONS.ALLIANCE && row.faction.side !== wowData.FACTIONS.HORDE) ||
+          (data.showAlliance && row.faction.side === wowData.FACTIONS.ALLIANCE) ||
+          (data.showHorde && row.faction.side === wowData.FACTIONS.HORDE);
       })
       .map(row => {
-        // if ((row.faction.side === 'alliance' && !data.showAlliance) ||
-        //     (row.faction.side === 'horde' && !data.showHorde)) 
+        // if ((row.faction.side === wowData.FACTIONS.ALLIANCE && !data.showAlliance) ||
+        //     (row.faction.side === wowData.FACTIONS.HORDE && !data.showHorde)) 
         // {
         //   // don't show faction-specific rep if we don't have character for that faction
         //   return;

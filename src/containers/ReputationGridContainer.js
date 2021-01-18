@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReputationGrid from '../components/ReputationGrid.js';
+import wowData from '../data/wow-data.js';
 
 class ReputationGridContainer extends Component {
   getReputationGridColumns(characters) {
@@ -11,11 +12,24 @@ class ReputationGridContainer extends Component {
       characters.forEach(char => {
         cols.push({
           name: char.name,
-          realm: char.realm,
+          realm: char.realm.name,
           level: char.level,
-          class: char.class,
-          race: char.race,
-          faction: char.faction === 0 ? 'alliance' : 'horde'
+          class: {
+            name: char.character_class.name,
+            id: char.character_class.id
+          },
+          covenant: {
+            name: char.covenant_progress ? char.covenant_progress.chosen_covenant.name : '',
+            id: char.covenant_progress ? char.covenant_progress.chosen_covenant.id : 0
+          },
+          faction: {
+            name: char.faction.name,
+            type: char.faction.type.toLowerCase()
+          },
+          ilvl: char.equipped_item_level,
+          race: char.race.name,
+          spec: char.active_spec.name,
+          title: char.active_title.name
         });
       });
     }
@@ -40,14 +54,14 @@ class ReputationGridContainer extends Component {
       if (fac.id) {
         // find character reps
         characters.forEach(char => {
-          let r = char.reputation.find(e => e.id === fac.id);
+          let r = char.reputations.reputations.find(e => e.faction.id === fac.id);
           if (!r) {
             r = {
               id: fac.id,
               name: fac.name
             };
           }
-          row[char.realm + '_' + char.name] = r;
+          row[char.realm.name + '_' + char.name] = r;
         });
       }
 
@@ -67,8 +81,8 @@ class ReputationGridContainer extends Component {
     };
     this.getReputationGridRows(factions, characters, data.rows, 1);
 
-    data.showAlliance = !!data.columns.find(c => c.faction === 'alliance');
-    data.showHorde = !!data.columns.find(c => c.faction === 'horde');
+    data.showAlliance = !!data.columns.find(c => c.faction && c.faction.type === wowData.FACTIONS.ALLIANCE);
+    data.showHorde = !!data.columns.find(c => c.faction && c.faction.type === wowData.FACTIONS.HORDE);
 
     return data;
   }

@@ -138,6 +138,14 @@
   opacity: 1;
 }
 
+.rep-grid-header-ilvl {
+  position: absolute;
+  top: 0px;
+  right: 55px;
+  font-size: 14px;
+  color: #fac01e;
+}
+
 .rep-grid-header-column-rep-details {
   margin-top: 4px;
 }
@@ -145,7 +153,6 @@
 .rep-grid-column-rep-class {
   font-size: 11px;
   line-height: 15px;
-  text-transform: uppercase;
 }
 .rep-grid-column-rep-realm {
   color: #5b616a;
@@ -308,7 +315,7 @@
 }
 /* Warlock */
 .class-9 {
-  color: #00ffba;
+  color: #9382c9;
 }
 /* Monk */
 .class-10 {
