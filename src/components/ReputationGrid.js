@@ -90,8 +90,8 @@ class ReputationGrid extends Component {
         const rep = row[colName];
         // if character has no rep with a faction there will still be a rep object with just rep ID & name, but no other props
         const hasRep = rep && rep.standing;
-        const val = (rep ? (rep.max > 0 ? `${rep.value} / ${rep.max}` : ' ') : '');
-        const width = (hasRep ? 100 * rep.value / rep.max : 0);
+        const val = (hasRep ? (rep.standing.max > 0 ? `${rep.standing.value} / ${rep.standing.max}` : ' ') : '');
+        const width = (hasRep ? 100 * rep.standing.value / rep.standing.max : 0);
         const widthStyle = `${width}%`;
         const standing = hasRep ? rep.standing.name['en_US'] : '';
 
