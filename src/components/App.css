@@ -1,6 +1,10 @@
+html {
+  background-color: rgb(7, 5, 12);
+}
+
 .App {
   font: Arial, Verdana, sans-serif;
-  background-color: rgb(26, 4, 7);
+  background-color: rgb(7, 5, 12);
   color: rgb(239, 201, 160);
 }
 
@@ -14,7 +18,7 @@
   padding: 20px;
   position: fixed;
   width: 100%;
-  background-color: rgb(26, 4, 7);
+  background-color: rgb(7, 5, 12);
   z-index: 10;
 }
 .character-search-realm {
@@ -65,10 +69,15 @@
   flex-basis: 400px;
 }
 
+.rep-grid-placeholder {
+  font-size: 32px;
+  font-weight: 400;
+}
+
 .rep-grid-header {
   position: fixed;
   z-index: 9;
-  background-color: rgb(26, 4, 7);
+  background-color: rgb(7, 5, 12);
   /* background: linear-gradient(to right, #1a0f08, #2d160d, #1a0f08); */
   min-width: 400px;
 }
@@ -255,10 +264,12 @@
   background: linear-gradient(to right, #8e0902, #d90e03);
 }
 .rep-grid-column-rep-standing-Neutral,
+.rep-grid-column-rep-standing-Whelpling,
 .rep-grid-column-rep-standing-Acquaintance {
   color: #edba03;
 }
 .rep-grid-column-rep-standing-Neutral .rep-grid-rep-bar-fill,
+.rep-grid-column-rep-standing-Whelpling .rep-grid-rep-bar-fill,
 .rep-grid-column-rep-standing-Acquaintance .rep-grid-rep-bar-fill {
   background-color: #edba03;
   background: linear-gradient(to right, #a17f02, #edba03);
@@ -266,6 +277,11 @@
 .rep-grid-column-rep-standing-Friendly,
 .rep-grid-column-rep-standing-Honored,
 .rep-grid-column-rep-standing-Revered,
+.rep-grid-column-rep-standing-Temporal-Trainee,
+.rep-grid-column-rep-standing-Timehopper,
+.rep-grid-column-rep-standing-Chrono-Friend,
+.rep-grid-column-rep-standing-Bronze-Ally,
+.rep-grid-column-rep-standing-Epoch-Mender,
 .rep-grid-column-rep-standing-Dubious,
 .rep-grid-column-rep-standing-Apprehensive,
 .rep-grid-column-rep-standing-Tentative,
@@ -279,6 +295,11 @@
 .rep-grid-column-rep-standing-Friendly .rep-grid-rep-bar-fill,
 .rep-grid-column-rep-standing-Honored .rep-grid-rep-bar-fill,
 .rep-grid-column-rep-standing-Revered .rep-grid-rep-bar-fill,
+.rep-grid-column-rep-standing-Temporal-Trainee .rep-grid-rep-bar-fill,
+.rep-grid-column-rep-standing-Timehopper .rep-grid-rep-bar-fill,
+.rep-grid-column-rep-standing-Chrono-Friend .rep-grid-rep-bar-fill,
+.rep-grid-column-rep-standing-Bronze-Ally .rep-grid-rep-bar-fill,
+.rep-grid-column-rep-standing-Epoch-Mender .rep-grid-rep-bar-fill,
 .rep-grid-column-rep-standing-Dubious .rep-grid-rep-bar-fill,
 .rep-grid-column-rep-standing-Apprehensive .rep-grid-rep-bar-fill,
 .rep-grid-column-rep-standing-Tentative .rep-grid-rep-bar-fill,
@@ -291,11 +312,13 @@
   background: linear-gradient(to right, #074a00, #0f9601);
 }
 .rep-grid-column-rep-standing-Exalted,
+.rep-grid-column-rep-standing-Timelord,
 .rep-grid-column-rep-standing-Appreciative,
 .rep-grid-column-rep-standing-Best-Friend {
   color: #28a687;
 }
 .rep-grid-column-rep-standing-Exalted .rep-grid-rep-bar-fill,
+.rep-grid-column-rep-standing-Timelord .rep-grid-rep-bar-fill,
 .rep-grid-column-rep-standing-Appreciative .rep-grid-rep-bar-fill,
 .rep-grid-column-rep-standing-Best-Friend .rep-grid-rep-bar-fill {
   background-color: #28a687;
