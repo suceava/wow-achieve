@@ -138,9 +138,22 @@
   opacity: 1;
 }
 
+.rep-grid-header-svg {
+  height: 20px;
+  width: 20px;
+}
+
 .rep-grid-header-ilvl {
   position: absolute;
-  top: 0px;
+  top: 5px;
+  right: 55px;
+  font-size: 14px;
+  color: #fac01e;
+}
+
+.rep-grid-header-achievement-points {
+  position: absolute;
+  top: 25px;
   right: 55px;
   font-size: 14px;
   color: #fac01e;
@@ -242,10 +255,12 @@
   background: linear-gradient(to right, #8e0902, #d90e03);
 }
 .rep-grid-column-rep-standing-Neutral,
+.rep-grid-column-rep-standing-Dubious,
 .rep-grid-column-rep-standing-Acquaintance {
   color: #edba03;
 }
 .rep-grid-column-rep-standing-Neutral .rep-grid-rep-bar-fill,
+.rep-grid-column-rep-standing-Dubious .rep-grid-rep-bar-fill,
 .rep-grid-column-rep-standing-Acquaintance .rep-grid-rep-bar-fill {
   background-color: #edba03;
   background: linear-gradient(to right, #a17f02, #edba03);
@@ -253,6 +268,10 @@
 .rep-grid-column-rep-standing-Friendly,
 .rep-grid-column-rep-standing-Honored,
 .rep-grid-column-rep-standing-Revered,
+.rep-grid-column-rep-standing-Apprehensive,
+.rep-grid-column-rep-standing-Tentative,
+.rep-grid-column-rep-standing-Ambivalent,
+.rep-grid-column-rep-standing-Cordial,
 .rep-grid-column-rep-standing-Pal,
 .rep-grid-column-rep-standing-Buddy,
 .rep-grid-column-rep-standing-Good-Friend {
@@ -261,6 +280,10 @@
 .rep-grid-column-rep-standing-Friendly .rep-grid-rep-bar-fill,
 .rep-grid-column-rep-standing-Honored .rep-grid-rep-bar-fill,
 .rep-grid-column-rep-standing-Revered .rep-grid-rep-bar-fill,
+.rep-grid-column-rep-standing-Apprehensive .rep-grid-rep-bar-fill,
+.rep-grid-column-rep-standing-Tentative .rep-grid-rep-bar-fill,
+.rep-grid-column-rep-standing-Ambivalent .rep-grid-rep-bar-fill,
+.rep-grid-column-rep-standing-Cordial .rep-grid-rep-bar-fill,
 .rep-grid-column-rep-standing-Pal .rep-grid-rep-bar-fill,
 .rep-grid-column-rep-standing-Buddy .rep-grid-rep-bar-fill,
 .rep-grid-column-rep-standing-Good-Friend .rep-grid-rep-bar-fill {
@@ -268,10 +291,12 @@
   background: linear-gradient(to right, #074a00, #0f9601);
 }
 .rep-grid-column-rep-standing-Exalted,
+.rep-grid-column-rep-standing-Appreciative,
 .rep-grid-column-rep-standing-Best-Friend {
   color: #28a687;
 }
 .rep-grid-column-rep-standing-Exalted .rep-grid-rep-bar-fill,
+.rep-grid-column-rep-standing-Appreciative .rep-grid-rep-bar-fill,
 .rep-grid-column-rep-standing-Best-Friend .rep-grid-rep-bar-fill {
   background-color: #28a687;
   background: linear-gradient(to right, #196855, #28a687);

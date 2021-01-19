@@ -14,6 +14,7 @@ class ReputationGridContainer extends Component {
           name: char.name,
           realm: char.realm.name,
           level: char.level,
+          achievement_points: char.achievement_points,
           class: {
             name: char.character_class.name,
             id: char.character_class.id
@@ -29,7 +30,7 @@ class ReputationGridContainer extends Component {
           ilvl: char.equipped_item_level,
           race: char.race.name,
           spec: char.active_spec.name,
-          title: char.active_title.name
+          title: char.active_title ? char.active_title.name : ''
         });
       });
     }
