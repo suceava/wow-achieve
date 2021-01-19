@@ -138,9 +138,22 @@
   opacity: 1;
 }
 
+.rep-grid-header-svg {
+  height: 20px;
+  width: 20px;
+}
+
 .rep-grid-header-ilvl {
   position: absolute;
-  top: 0px;
+  top: 5px;
+  right: 55px;
+  font-size: 14px;
+  color: #fac01e;
+}
+
+.rep-grid-header-achievement-points {
+  position: absolute;
+  top: 25px;
   right: 55px;
   font-size: 14px;
   color: #fac01e;
