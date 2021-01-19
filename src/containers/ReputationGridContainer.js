@@ -30,7 +30,7 @@ class ReputationGridContainer extends Component {
           ilvl: char.equipped_item_level,
           race: char.race.name,
           spec: char.active_spec.name,
-          title: char.active_title.name
+          title: char.active_title ? char.active_title.name : ''
         });
       });
     }
