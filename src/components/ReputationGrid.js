@@ -160,6 +160,14 @@ class ReputationGrid extends Component {
   }
 
   render() {
+    if (!this.props.data.columns || this.props.data.columns.length <= 1) {
+      return(
+        <div className='rep-grid-placeholder'>
+          Please load one or more characters to compare
+        </div>
+      );
+    }
+
     return(
       <div className='rep-grid'>
         <div className='rep-grid-header'>
