@@ -255,12 +255,10 @@
   background: linear-gradient(to right, #8e0902, #d90e03);
 }
 .rep-grid-column-rep-standing-Neutral,
-.rep-grid-column-rep-standing-Dubious,
 .rep-grid-column-rep-standing-Acquaintance {
   color: #edba03;
 }
 .rep-grid-column-rep-standing-Neutral .rep-grid-rep-bar-fill,
-.rep-grid-column-rep-standing-Dubious .rep-grid-rep-bar-fill,
 .rep-grid-column-rep-standing-Acquaintance .rep-grid-rep-bar-fill {
   background-color: #edba03;
   background: linear-gradient(to right, #a17f02, #edba03);
@@ -268,6 +266,7 @@
 .rep-grid-column-rep-standing-Friendly,
 .rep-grid-column-rep-standing-Honored,
 .rep-grid-column-rep-standing-Revered,
+.rep-grid-column-rep-standing-Dubious,
 .rep-grid-column-rep-standing-Apprehensive,
 .rep-grid-column-rep-standing-Tentative,
 .rep-grid-column-rep-standing-Ambivalent,
@@ -280,6 +279,7 @@
 .rep-grid-column-rep-standing-Friendly .rep-grid-rep-bar-fill,
 .rep-grid-column-rep-standing-Honored .rep-grid-rep-bar-fill,
 .rep-grid-column-rep-standing-Revered .rep-grid-rep-bar-fill,
+.rep-grid-column-rep-standing-Dubious .rep-grid-rep-bar-fill,
 .rep-grid-column-rep-standing-Apprehensive .rep-grid-rep-bar-fill,
 .rep-grid-column-rep-standing-Tentative .rep-grid-rep-bar-fill,
 .rep-grid-column-rep-standing-Ambivalent .rep-grid-rep-bar-fill,
