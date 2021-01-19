@@ -14,6 +14,7 @@ class ReputationGridContainer extends Component {
           name: char.name,
           realm: char.realm.name,
           level: char.level,
+          achievement_points: char.achievement_points,
           class: {
             name: char.character_class.name,
             id: char.character_class.id
