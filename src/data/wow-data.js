@@ -1,5 +1,5 @@
 import moment from 'moment';
-import 'whatwg-fetch';
+import fetch from 'cross-fetch';
 import wow_factions from './wow-factions.js';
 
 const wowData =  {
@@ -28,6 +28,17 @@ const wowData =  {
   },
 
   _DEV_ALWAYS_READ_CACHED_DATA: false,
+
+  _getCache: function(key) {
+    if (typeof(Storage) === 'undefined') return null;
+
+    return localStorage.getItem(key);
+  },
+  _setCache: function(key, value) {
+    if (typeof(Storage) === 'undefined') return;
+
+    localStorage.setItem(key, value);
+  },
 
   _clientCredentials: function(forceFetch = false) {
     if (!forceFetch && this.CACHED_TOKEN) {
@@ -65,7 +76,7 @@ const wowData =  {
     expirationDays = expirationDays || 365;
 
     // check local storage first
-    const data = localStorage.getItem(url.toLowerCase());
+    const data = this._getCache(url.toLowerCase());
     if (data) {
       const cachedData = JSON.parse(data);
       // make sure cache is not expired
@@ -103,7 +114,7 @@ const wowData =  {
             json.expirationDate = moment().add(expirationDays, 'days');
 
             // save to local storage (has to be a string)
-            localStorage.setItem(url.toLowerCase(), JSON.stringify(json));
+            this._setCache(url.toLowerCase(), JSON.stringify(json));
             return Promise.resolve(json);
           })
           .catch(error => { throw error; });
