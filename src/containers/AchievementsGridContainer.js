@@ -4,25 +4,35 @@ import AchievementsGrid from '../components/AchievementsGrid';
 
 class AchievementsGridContainer extends Component {
   getAchievementsGridColumns(achievements_view, characters) {
-    const cols = [];
+    const cols = [{ name: 'Achievement' }];
 
-    cols.push({ name: 'Achievement' });
-    if (achievements_view.length > 0) {
-      // first column is the achievement
-      cols.push({ name: 'Achievement' });
-    }
+    // NOT SURE WHY THIS WAS WRITTEN THIS WAY
+    // cols.push({ name: 'Achievement' });
+    // if (achievements_view.length > 0) {
+    //   // first column is the achievement
+    //   cols.push({ name: 'Achievement' });
+    // }
     
     if (characters) {
       // create a column for each character
       characters.forEach(char => {
         cols.push({
           name: char.name,
-          realm: char.realm,
+          realm: char.realm.name,
           level: char.level,
-          achievementPoints: char.achievementPoints,
-          class: char.class,
-          race: char.race,
-          faction: char.faction === 0 ? 'alliance' : 'horde'
+          achievementPoints: char.achievement_points,
+          class: {
+            name: char.character_class.name,
+            id: char.character_class.id
+          },
+          faction: {
+            name: char.faction.name,
+            type: char.faction.type.toLowerCase()
+          },
+          ilvl: char.equipped_item_level,
+          race: char.race.name,
+          spec: char.active_spec.name,
+          title: char.active_title ? char.active_title.name : ''
         });
       });
     }
@@ -46,7 +56,7 @@ class AchievementsGridContainer extends Component {
 
         characters.forEach(char => {
           const completedForCategory = _.intersection(ach.ids, char.achievements.achievementsCompleted);
-          const points = this.getAchievementPoints(ach, completedForCategory);
+          const points = 0; //this.getAchievementPoints(ach, completedForCategory);
           const count = completedForCategory ? completedForCategory.length : 0;
           const percent = row.achievement.count > 0 ? count / row.achievement.count : 0;
 

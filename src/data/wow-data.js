@@ -27,6 +27,8 @@ const wowData =  {
     HORDE: 'horde'
   },
 
+  _DEV_ALWAYS_READ_CACHED_DATA: false,
+
   _clientCredentials: function(forceFetch = false) {
     if (!forceFetch && this.CACHED_TOKEN) {
       // check expiration
@@ -35,8 +37,6 @@ const wowData =  {
 
     const fullUrl = `https://${this.REGION}.${this.BASE_OAUTH_URL}`;
     const encodedCreds = Buffer.from(`${this.CLIENT_ID}:${this.CLIENT_SECRET}`).toString('base64');
-
-  _DEV_ALWAYS_READ_CACHED_DATA: false,
 
     const options = {
       method: 'POST',
@@ -126,6 +126,10 @@ const wowData =  {
 
         return profile;
       })
+  },
+
+  loadCharacterAchievements: function(realm, character) {
+    return null;
   },
 
   loadCharacterReputations: function(realm, character) {
