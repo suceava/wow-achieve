@@ -57,6 +57,7 @@ html {
   position: fixed;
   width: 100%;
   z-index: 9;
+  justify-content: center;
 }
 .nav-item-container {
   display: table-cell;
@@ -87,7 +88,6 @@ html {
 .achieve-grid-container,
 .rep-grid-container {
   display: flex;
-  justify-content: center;
   padding-top: 118px;
 }
 
@@ -117,8 +117,8 @@ html {
 
 .rep-grid-header {
   position: sticky;
-  top: 76px;
-  z-index: 9;
+  top: 118px;
+  z-index: 8;
   background-color: rgb(7, 5, 12);
   /* background: linear-gradient(to right, #1a0f08, #2d160d, #1a0f08); */
   min-width: 400px;
