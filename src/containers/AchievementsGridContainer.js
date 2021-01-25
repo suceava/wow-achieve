@@ -60,7 +60,7 @@ class AchievementsGridContainer extends Component {
           const count = completedForCategory ? completedForCategory.length : 0;
           const percent = row.achievement.count > 0 ? count / row.achievement.count : 0;
 
-          row[`${char.realm}_${char.name}`] = {
+          row[`${char.realm.name}_${char.name}`] = {
             count: count,
             percent: percent,
             points: points.completedPoints

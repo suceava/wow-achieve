@@ -1,6 +1,7 @@
 import moment from 'moment';
 import fetch from 'cross-fetch';
 import wow_factions from './wow-factions.js';
+import wow_achievements from './wow-achievements.js';
 
 const wowData =  {
   CACHED_TOKEN: null,
@@ -154,9 +155,17 @@ const wowData =  {
   loadAchievementCategories: function() {
     return this._getApiJson('achievement-category/index?namespace=static-us', 7);
   },
+  loadAchievementCategory: function(id) {
+    return this._getApiJson(`achievement-category/${id}?namespace=static-us`, 7);
+  },
 
   loadAchievements: function() {
-    return this._getApiJson('achievement/index?namespace=static-us', 7);
+    const achievements = {
+      achievements: wow_achievements
+    };
+
+    return Promise.resolve(achievements);
+    // return this._getApiJson('achievement/index?namespace=static-us', 7);
   },
 
   loadFactions: function() {
