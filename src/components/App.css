@@ -48,9 +48,47 @@ html {
 }
 /* end character search bar */
 
-.rep-grid-container {
+/* nav */ 
+.nav-container {
+  background-color: rgb(7, 5, 12);  
+  border-bottom: 1px solid rgba(255,255,255,.25);
   display: flex;
   padding-top: 76px;
+  position: fixed;
+  width: 100%;
+  z-index: 9;
+  justify-content: center;
+}
+.nav-item-container {
+  display: table-cell;
+  padding: 6px;
+  vertical-align: middle;
+}
+.nav-link {
+  color: rgb(248, 183, 0);
+  display: block;
+  text-decoration: none;
+}
+.nav-link-active,
+.nav-link:hover {
+  background-color: #f8b700;
+  color: #211510;
+}
+.nav {
+  font-family: "Semplicita Pro","Open Sans",Aria;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 18px;
+  padding: 6px;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+/* end nav */
+
+.achieve-grid-container,
+.rep-grid-container {
+  display: flex;
+  padding-top: 118px;
 }
 
 /* rep grid */
@@ -79,8 +117,8 @@ html {
 
 .rep-grid-header {
   position: sticky;
-  top: 76px;
-  z-index: 9;
+  top: 118px;
+  z-index: 8;
   background-color: rgb(7, 5, 12);
   /* background: linear-gradient(to right, #1a0f08, #2d160d, #1a0f08); */
   min-width: 400px;
@@ -332,7 +370,92 @@ html {
   background: linear-gradient(to right, #196855, #28a687);
 }
 
+.rep-grid-column-points-wrapper {
+  display: table;
+  line-height: 0;
+}
+.rep-grid-column-points {
+  font-size: 12px;
+}
+
 /* end rep grid */
+
+/* achievements grid */
+
+.achieve-grid-svg-container {
+  position: relative;
+  width: 125px;
+  height: 125px;
+  margin-right: auto;
+  margin-left: auto;
+}
+.achieve-grid-svg-outline {
+  fill: none;
+  stroke: #3f4f56;
+  stroke-width: 7;
+}
+.achieve-grid-svg-filled {
+  fill: none;
+  stroke-width: 6;
+  stroke-dashoffset: 25;
+}
+.achieve-grid-svg-filled-brown {
+  stroke: #99755c;
+}
+.achieve-grid-svg-filled-orange {
+  stroke: #c76700;
+}
+.achieve-grid-svg-filled-green {
+  stroke: #1b9601;
+}
+
+.achieve-grid-svg-unfilled {
+  fill: none;
+  stroke: #181818;
+  stroke-width: 6;
+}
+
+.achieve-grid-svg-percent {
+  color: #fff;
+  font-size: 1.44em;
+  font-weight: 400;
+  text-align: center;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.achieve-grid-points-container {
+  text-align: center;
+}
+.rep-grid-column-points-svg-container,
+.achieve-grid-points-svg-container {
+  display: table-cell;
+  padding-right: 3px;
+  color: #f8b700;
+}
+.rep-grid-column-points-svg-container svg,
+.achieve-grid-points-svg-container svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+.achieve-grid-points-wrapper {
+  width: auto;
+  margin: 0 auto;
+  display: table;
+  line-height: 0;
+}
+.rep-grid-column-points,
+.achieve-grid-points {
+  color: #fff;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+/* end achievements grid */
 
 /* classes */
 

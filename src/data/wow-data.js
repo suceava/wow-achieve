@@ -1,6 +1,7 @@
 import moment from 'moment';
-import 'whatwg-fetch';
+import fetch from 'cross-fetch';
 import wow_factions from './wow-factions.js';
+import wow_achievements from './wow-achievements.js';
 
 const wowData =  {
   CACHED_TOKEN: null,
@@ -11,6 +12,7 @@ const wowData =  {
   BASE_OAUTH_URL: 'battle.net/oauth/token',
   BASE_GAME_API_URL: 'api.blizzard.com/data/wow/',
   BASE_PROFILE_API_URL: 'api.blizzard.com/profile/wow/',
+  ICON_URL: 'http://media.blizzard.com/wow/icons/56/',
 
   REGIONS: [
     { value: 'us', text: 'North America' },
@@ -24,6 +26,19 @@ const wowData =  {
   FACTIONS: {
     ALLIANCE: 'alliance',
     HORDE: 'horde'
+  },
+
+  _DEV_ALWAYS_READ_CACHED_DATA: false,
+
+  _getCache: function(key) {
+    if (typeof(Storage) === 'undefined') return null;
+
+    return localStorage.getItem(key);
+  },
+  _setCache: function(key, value) {
+    if (typeof(Storage) === 'undefined') return;
+
+    localStorage.setItem(key, value);
   },
 
   _clientCredentials: function(forceFetch = false) {
@@ -62,11 +77,15 @@ const wowData =  {
     expirationDays = expirationDays || 365;
 
     // check local storage first
-    const data = localStorage.getItem(url.toLowerCase());
+    const data = this._getCache(url.toLowerCase());
     if (data) {
       const cachedData = JSON.parse(data);
       // make sure cache is not expired
-      if (cachedData.expirationDate && moment().isBefore(cachedData.expirationDate)) {
+      if (this._DEV_ALWAYS_READ_CACHED_DATA || 
+          (cachedData.expirationDate && 
+           moment().isBefore(cachedData.expirationDate))
+         ) 
+      {
         return Promise.resolve(cachedData);
       }
     }
@@ -96,29 +115,29 @@ const wowData =  {
             json.expirationDate = moment().add(expirationDays, 'days');
 
             // save to local storage (has to be a string)
-            localStorage.setItem(url.toLowerCase(), JSON.stringify(json));
+            this._setCache(url.toLowerCase(), JSON.stringify(json));
             return Promise.resolve(json);
           })
           .catch(error => { throw error; });
       });
   },
 
-  loadCharacterProfile: function(realm, character, loadExtras = ['reputations']) {
-    return this._getProfileJson(`character/${realm}/${character}?namespace=profile-us`, 1)
-      .then(profile => {
-        if (loadExtras) {
-          const extra = loadExtras[0];
-          if (profile[extra]) {
-            return this._getJson(profile[extra].href, 1)
-              .then(responseExtra => {
-                profile[extra] = responseExtra;
-                return profile;
-              });
-          }
+  loadCharacterProfile: async function (realm, character, loadExtras = ['reputations', 'achievements']) {
+    const profile = await this._getProfileJson(`character/${realm}/${character}?namespace=profile-us`, 1);
+    if (loadExtras) {
+      for (const extra of loadExtras) {
+        if (profile[extra]) {
+          const responseExtra = await this._getJson(profile[extra].href, 1);
+          profile[extra] = responseExtra;
         }
+      }
+    }
 
-        return profile;
-      })
+    return profile;
+  },
+
+  loadCharacterAchievements: function(realm, character) {
+    return null;
   },
 
   loadCharacterReputations: function(realm, character) {
@@ -132,9 +151,17 @@ const wowData =  {
   loadAchievementCategories: function() {
     return this._getApiJson('achievement-category/index?namespace=static-us', 7);
   },
+  loadAchievementCategory: function(id) {
+    return this._getApiJson(`achievement-category/${id}?namespace=static-us`, 7);
+  },
 
   loadAchievements: function() {
-    return this._getApiJson('achievement/index?namespace=static-us', 7);
+    const achievements = {
+      achievements: wow_achievements
+    };
+
+    return Promise.resolve(achievements);
+    // return this._getApiJson('achievement/index?namespace=static-us', 7);
   },
 
   loadFactions: function() {

@@ -3,11 +3,11 @@ import wowData from '../data/wow-data.js';
 import sideAlliance from '../../public/alliance.png';
 import sideHorde from '../../public/horde.png';
 
-class ReputationGrid extends Component {
+class AchievementsGrid extends Component {
   headerRow(data) {
     const ths = data.columns.map(col => {
       const cls = 'rep-grid-column rep-grid-header-column ' + 
-        (col.name === 'Faction' ? 'rep-grid-column-faction' : 'rep-grid-column-rep');
+        (col.name === 'Achievement' ? 'rep-grid-column-faction' : 'rep-grid-column-rep');
       const nameCls = col.realm ? `class-${col.class.id}` : '';
       const key = (col.realm ? col.realm + '_' : '') + col.name;
 
@@ -54,7 +54,9 @@ class ReputationGrid extends Component {
                   <img src={col.faction.type === wowData.FACTIONS.ALLIANCE ? sideAlliance : sideHorde} alt={col.faction.name} />
                 </div>
 
-                <div className={`rep-grid-column-rep-class`}>{col.level} {col.spec} {col.class.name}</div>
+                <div className={`rep-grid-column-rep-class`}>
+                  {col.level} {col.spec} {col.class.name}
+                </div>
                 <div className='rep-grid-column-rep-realm'>{col.realm}</div>
               </div>
             }
@@ -72,62 +74,71 @@ class ReputationGrid extends Component {
 
   bodyRowCols(cols, row) {
     return cols.map(col => {
-      const colName = (col.realm ? col.realm + '_' : '' ) + col.name;
+      const colName = (col.realm ? col.realm + '_' : '') + col.name;
       let cls = 'rep-grid-column ';
 
-      if (colName === 'Faction') {
-        // first column is the faction name
+      if (colName === 'Achievement') {
+        // first column is the achievement name
 
-        // add faction icon
-        const sideImg = (row.faction.side ?
-          <div className='rep-grid-column-faction-icon'>
-            <img src={row.faction.side === wowData.FACTIONS.ALLIANCE ? sideAlliance : sideHorde} alt={row.faction.side} />
-          </div>
-          : 
-          ''
-        );
-
-        cls += 'rep-grid-column-faction ' + (!row.faction.hasFactions ? 'rep-grid-faction ' : `rep-grid-faction-category-${row.depth}`);
+        cls += 'rep-grid-column-faction';
         return (
-          <div className={cls} key={`${row.faction.name}_${colName}`}>
+          <div className={cls} key={`${row.achievement.name}_${colName}`}>
             <div className='rep-grid-column-faction-label'>
-              {row.faction.name}
-              {sideImg}
+              {row.achievement.name}
             </div>
           </div>
-        );
+        )
       }
       else {
-        // reputation column
-        const rep = row[colName];
-        // if character has no rep with a faction there will still be a rep object with just rep ID & name, but no other props
-        const hasRep = rep && rep.standing;
-        const val = (hasRep ? (rep.standing.max > 0 ? `${rep.standing.value} / ${rep.standing.max}` : ' ') : '');
-        const width = (hasRep ? 100 * rep.standing.value / rep.standing.max : 0);
-        const widthStyle = `${width}%`;
-        const standing = hasRep ? rep.standing.name['en_US'] : '';
+        // character achievement
+        const ach = row[colName];
+        const percent = Math.round(ach.percent * 100);
+        const strokeArray = `${percent} ${100 - percent}`;
+        let colorCls = 'achieve-grid-svg-filled-';
+        if (percent >= 90) {
+          colorCls += 'green';
+        } else if (percent >= 33) {
+          colorCls += 'orange';
+        } else {
+          colorCls += 'brown';
+        }
+        const fillCls = `achieve-grid-svg-filled ${colorCls}`;
 
-        cls += `rep-grid-column-rep rep-grid-column-rep-standing-${standing.replace(' ', '-')} ` + (!row.faction.hasFactions ? '' : `rep-grid-rep-category-${row.depth}`);
+        cls += `rep-grid-column-rep`;
 
-        const repBar = (val ?
-          <div className='rep-grid-rep-container'>
-            <div className='rep-grid-rep-bar'>
-              <div className='rep-grid-rep-bar-score'>
-                {val}
+        const achieveBox =
+          <div className='achieve-grid-svg-container'>
+            <svg viewBox='0 0 40 40'>
+              <circle className='achieve-grid-svg-outline' cx='20' cy='20' r='15.9155'></circle>
+              <circle className='achieve-grid-svg-unfilled' cx='20' cy='20' r='15.9155'></circle>
+              <circle className={fillCls} cx='20' cy='20' r='15.9155' style={{strokeDasharray: strokeArray}}></circle>
+            </svg>
+            <div className='achieve-grid-svg-percent'>
+              {percent}%
+            </div>
+          </div>;
+
+        const achievePoints =
+          <div className='achieve-grid-points-container'>
+            <div className='achieve-grid-points-wrapper'>
+              <div className='achieve-grid-points-svg-container'>
+                <svg viewBox="0 0 64 64">
+                  <g id="achievement-shield">
+                    <path d="M51.492,3.677c-5.941,1.654-14.886,3.906-19.494,3.906c-4.611,0-13.553-2.252-19.495-3.906   C9.566,2.862,6.628,4.932,6.628,7.821v34.684c0,1.336,0.657,2.597,1.778,3.415l20.792,15.176c0.824,0.602,1.814,0.902,2.8,0.904   c0.989,0,1.981-0.3,2.805-0.904L55.594,45.92c1.122-0.818,1.778-2.08,1.778-3.415V7.823C57.37,4.935,54.43,2.862,51.492,3.677z"></path>
+                  </g>
+                </svg>
               </div>
-              <div className='rep-grid-rep-bar-fill' style={{width: widthStyle}}>
+              <div className='achieve-grid-points'>
+                {ach.points}
               </div>
             </div>
-            <div className='rep-grid-rep-standing'>
-              {standing}
-            </div>
-          </div>
-          :
-          ''
-        );
+          </div>;
+
+
         return (
-          <div className={cls} key={`${row.faction.name}_${colName}`}>
-            {repBar}
+          <div className={cls} key={`${row.achievement.name}_${colName}`}>
+            {achieveBox}
+            {achievePoints}
           </div>
         )
       }
@@ -137,21 +148,11 @@ class ReputationGrid extends Component {
   bodyRows(data) {
     const rows = data.rows
       .filter(row => {
-        // filter out side-specific factions if we don't have characters for that faction in our list
-        return (row.faction.side !== wowData.FACTIONS.ALLIANCE && row.faction.side !== wowData.FACTIONS.HORDE) ||
-          (data.showAlliance && row.faction.side === wowData.FACTIONS.ALLIANCE) ||
-          (data.showHorde && row.faction.side === wowData.FACTIONS.HORDE);
+        return true;
       })
       .map(row => {
-        // if ((row.faction.side === wowData.FACTIONS.ALLIANCE && !data.showAlliance) ||
-        //     (row.faction.side === wowData.FACTIONS.HORDE && !data.showHorde)) 
-        // {
-        //   // don't show faction-specific rep if we don't have character for that faction
-        //   return;
-        // }
-
         return (
-          <div className='rep-grid-row' key={row.faction.name}>
+          <div className='rep-grid-row' key={row.achievement.name}>
             {this.bodyRowCols(data.columns, row)}
           </div>
         );
@@ -181,4 +182,4 @@ class ReputationGrid extends Component {
   }
 }
 
-export default ReputationGrid;
+export default AchievementsGrid;

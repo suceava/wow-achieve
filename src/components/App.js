@@ -4,8 +4,10 @@ import { Route, Redirect, Switch } from 'react-router-dom';
 import './App.css';
 import wowData from '../data/wow-data.js';
 import CharacterSearch from './CharacterSearch.js';
+import Nav from './Nav.js';
 import Footer from './Footer.js';
 import ReputationGridContainer from '../containers/ReputationGridContainer.js';
+import AchievementsGridContainer from '../containers/AchievementsGridContainer.js';
 
 class App extends Component {
   constructor(props) {
@@ -14,14 +16,11 @@ class App extends Component {
     this.state = {
       characters: [],
       realms: [],
-      achievementCategories: [],
       achievements: [],
       factions: [],
-      character_list: []
+      character_list: [],
+      achievements_view: []
     };
-
-    //wowData.API_KEY = this.state.apiKey;
-    //wowData.LOCALE = this.state.locale;
 
     this.handleSearchCharacter = this.loadCharacter.bind(this);
     this.handleRemoveCharacter = this.removeCharacter.bind(this);
@@ -32,10 +31,10 @@ class App extends Component {
     wowData.loadFactions()
       .then(response => this.setState({ factions: response.factions }));
     // load achievements
-    wowData.loadAchievementCategories()
-      .then(response => this.setState({ achievementCategories: response.categories }));
     wowData.loadAchievements()
-      .then(response => this.setState({ achievements: response.achievements }));
+      .then(response => {
+        this.setState({ achievements: response.achievements });
+      });
     // load realms list
     wowData.loadRealms()
       .then(response => {
@@ -141,10 +140,21 @@ class App extends Component {
           handleSearch={this.handleSearchCharacter}
         />
 
+        <Nav />
+
         <Switch>
           <Route exact path="/reputation" render={() => 
             <ReputationGridContainer
               factions={this.state.factions}
+              characters={this.state.characters}
+              handleRemove={this.handleRemoveCharacter}
+            />
+          }/>
+
+          <Route exact path="/achievements" render={() =>
+            <AchievementsGridContainer
+              achievements_view={this.state.achievements_view}
+              achievements={this.state.achievements}
               characters={this.state.characters}
               handleRemove={this.handleRemoveCharacter}
             />
