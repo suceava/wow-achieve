@@ -396,10 +396,19 @@ html {
 }
 .achieve-grid-svg-filled {
   fill: none;
-  stroke: #c76700;
   stroke-width: 6;
   stroke-dashoffset: 25;
 }
+.achieve-grid-svg-filled-brown {
+  stroke: #99755c;
+}
+.achieve-grid-svg-filled-orange {
+  stroke: #c76700;
+}
+.achieve-grid-svg-filled-green {
+  stroke: #1b9601;
+}
+
 .achieve-grid-svg-unfilled {
   fill: none;
   stroke: #181818;

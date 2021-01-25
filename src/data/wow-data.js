@@ -122,22 +122,18 @@ const wowData =  {
       });
   },
 
-  loadCharacterProfile: function(realm, character, loadExtras = ['reputations']) {
-    return this._getProfileJson(`character/${realm}/${character}?namespace=profile-us`, 1)
-      .then(profile => {
-        if (loadExtras) {
-          const extra = loadExtras[0];
-          if (profile[extra]) {
-            return this._getJson(profile[extra].href, 1)
-              .then(responseExtra => {
-                profile[extra] = responseExtra;
-                return profile;
-              });
-          }
+  loadCharacterProfile: async function (realm, character, loadExtras = ['reputations', 'achievements']) {
+    const profile = await this._getProfileJson(`character/${realm}/${character}?namespace=profile-us`, 1);
+    if (loadExtras) {
+      for (const extra of loadExtras) {
+        if (profile[extra]) {
+          const responseExtra = await this._getJson(profile[extra].href, 1);
+          profile[extra] = responseExtra;
         }
+      }
+    }
 
-        return profile;
-      })
+    return profile;
   },
 
   loadCharacterAchievements: function(realm, character) {

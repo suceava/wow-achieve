@@ -94,6 +94,15 @@ class AchievementsGrid extends Component {
         const ach = row[colName];
         const percent = Math.round(ach.percent * 100);
         const strokeArray = `${percent} ${100 - percent}`;
+        let colorCls = 'achieve-grid-svg-filled-';
+        if (percent >= 90) {
+          colorCls += 'green';
+        } else if (percent >= 33) {
+          colorCls += 'orange';
+        } else {
+          colorCls += 'brown';
+        }
+        const fillCls = `achieve-grid-svg-filled ${colorCls}`;
 
         cls += `rep-grid-column-rep`;
 
@@ -102,7 +111,7 @@ class AchievementsGrid extends Component {
             <svg viewBox='0 0 40 40'>
               <circle className='achieve-grid-svg-outline' cx='20' cy='20' r='15.9155'></circle>
               <circle className='achieve-grid-svg-unfilled' cx='20' cy='20' r='15.9155'></circle>
-              <circle className='achieve-grid-svg-filled' cx='20' cy='20' r='15.9155' style={{strokeDasharray: strokeArray}}></circle>
+              <circle className={fillCls} cx='20' cy='20' r='15.9155' style={{strokeDasharray: strokeArray}}></circle>
             </svg>
             <div className='achieve-grid-svg-percent'>
               {percent}%
@@ -142,7 +151,6 @@ class AchievementsGrid extends Component {
         return true;
       })
       .map(row => {
-console.log(row);
         return (
           <div className='rep-grid-row' key={row.achievement.name}>
             {this.bodyRowCols(data.columns, row)}

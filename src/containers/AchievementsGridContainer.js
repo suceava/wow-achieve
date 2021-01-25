@@ -49,21 +49,25 @@ class AchievementsGridContainer extends Component {
           achievement: {
             id: ach.id,
             name: ach.name,
-            count: ach.ids ? ach.ids.length : 0
+            points: ach.aggregatePoints
           }
         };
         rows.push(row);
 
         characters.forEach(char => {
-          const completedForCategory = _.intersection(ach.ids, char.achievements.achievementsCompleted);
-          const points = 0; //this.getAchievementPoints(ach, completedForCategory);
-          const count = completedForCategory ? completedForCategory.length : 0;
-          const percent = row.achievement.count > 0 ? count / row.achievement.count : 0;
+          // get progress
+          const prog = char.achievements.category_progress.find((c) => c.category.id === ach.id);
+          if (!prog) {
+            console.error('not found', ach.id);
+            return;
+          }
+          const categoryPoints = row.achievement.points[char.faction.type.toLowerCase()];
+          const percent = Math.floor((prog.quantity / categoryPoints.quantity) * 100) / 100;
 
           row[`${char.realm.name}_${char.name}`] = {
-            count: count,
-            percent: percent,
-            points: points.completedPoints
+            quantity: prog.quantity,
+            points: prog.points,
+            percent: percent
           };
         });
       });
