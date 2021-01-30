@@ -58,7 +58,12 @@ class AchievementsGridContainer extends Component {
           // get progress
           const prog = char.achievements.category_progress.find((c) => c.category.id === ach.id);
           if (!prog) {
-            console.error('not found', ach.id);
+            console.error(`achievement ${ach.name} (id=${ach.id}) not found for character ${char.name}`);
+            row[`${char.realm.name}_${char.name}`] = {
+              quantity: 0,
+              points: 0,
+              percent: 0
+            };
             return;
           }
           const categoryPoints = row.achievement.points[char.faction.type.toLowerCase()];
